@@ -8,11 +8,9 @@ app.use(function(req, res, next) {
 });
 
 var https = require('https');
+var http = require('http');
 
-//The url we want is: 'www.random.org/integers/?num=1&min=1&max=10&col=1&base=10&format=plain&rnd=new'
-	var API_ACCESS_TOKEN = '398360010.0387370.5e1bb9daf23b431982b33cd4180f454a';
-var API_USER_ID = '577141516'
-var API_ENDPOINT =  `https://api.instagram.com/v1/users/${API_USER_ID}/media/recent/?access_token=${API_ACCESS_TOKEN}&callback=?`;
+var API_ENDPOINT = 'https://www.instagram.com/netlightconsulting/media/?max_id=1268135008671348188_577141516';
 
 
 app.get('/imgs', function (req, response) {

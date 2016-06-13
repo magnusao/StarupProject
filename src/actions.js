@@ -10,6 +10,6 @@ export function selectImage(image) {
 
 export function loadImages(){
 	return {
-		type: LOAD_IMAGES;
+		type: LOAD_IMAGES
 	}
 }

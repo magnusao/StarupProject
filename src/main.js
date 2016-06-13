@@ -9,7 +9,7 @@ import createSagaMiddleware from 'redux-saga'
 import {Provider} from 'react-redux';
 import reducer from './reducer'
 
-import {loadImages} from './watchForLoadImages';
+import {watchForLoadImages, loadImages} from './saga';
 
 
 const store = createStore(

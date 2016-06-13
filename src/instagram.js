@@ -1,8 +1,12 @@
-const API_KEY = 'a46a979f39c49975dbdd23b378e6d3d5';
-const API_ENDPOINT = 'https://api.flickr.com/services/rest/?method=flickr.interestingness.getList&api_key=${API_KEY}&format=json&nojsoncallback=1&per_page=5';
+const API_ACCESS_TOKEN = '398360010.0387370.5e1bb9daf23b431982b33cd4180f454a';
+const API_USER_ID = '30632597'
+const API_ENDPOINT =  'https://api.instagram.com/v1/users/${API_USER_ID}/media/recent/?access_token=${API_ACCESS_TOKEN}';
 
-const fetchImages = () => {
-  return fetch(API_ENDPOINT).then(function (response) {
+export const fetchImages = () => {
+	const url = (({API_ACCESS_TOKEN, API_USER_ID}) => API_ENDPOINT)
+	console.log(({farm, server, id, secret}) => 'https://farm${farm}.staticflickr.com/${server}/${id}_${secret}.jpg')
+  return fetch(url).then(function (response) {
+  		console.log(response)
   	  return response.json().then(function (json) {
       return json.photos.photo.map(
         ({farm, server, id, secret}) => 'https://farm${farm}.staticflickr.com/${server}/${id}_${secret}.jpg'

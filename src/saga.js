@@ -7,6 +7,7 @@ export function* loadImages() {
     yield put({type: 'IMAGES_LOADED', images})
     yield put({type: 'IMAGE_SELECTED', image: images[0]})
   } catch(error) {
+  	console.log(error)
     yield put({type: 'IMAGE_LOAD_FAILURE', error})
   }
 }

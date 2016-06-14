@@ -9,13 +9,17 @@ import createSagaMiddleware from 'redux-saga'
 import {Provider} from 'react-redux';
 import reducer from './reducer'
 
-import {watchForLoadImages, loadImages} from './saga';
+import {watchForLoadImages, watchForLoadPopularImages, watchForLoadRecentImages, loadImages} from './saga';
 
 
 const store = createStore(
 	reducer,
-	applyMiddleware(createSagaMiddleware(watchForLoadImages))
-);
+	applyMiddleware(
+		createSagaMiddleware(watchForLoadRecentImages),
+		createSagaMiddleware(watchForLoadImages),
+		createSagaMiddleware(watchForLoadPopularImages)))
+
+console.log(store.getState())
 
 ReactDOM.render(
   <Provider store={store}>

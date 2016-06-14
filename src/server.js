@@ -25,7 +25,7 @@ var handle_new_images = (response, images) => {
 		var recieved = response.items.map(
 	        (item) => map_new_item(item)
 	    );
-		images.push(recieved); 
+	    recieved.forEach((item) => images.push(item));
 		max_id = response.items[response.items.length-1].id;
 	}
 
@@ -67,23 +67,7 @@ app.get('/init', (req, res) => {
 
 
 app.get('/imgs', function (req, response) {
-  https.get(API_ENDPOINT, (res) => {
-  console.log('statusCode: ', res.statusCode);
-  console.log('headers: ', res.headers);
-  var data = "";
-  response.contentType("application/json");
-
-  res.on('data', (d) => {
-    data += d;
-  });
-
-  res.on('end', () => {
-  	response.send(data);
-  });
-
-}).on('error', (e) => {
-  console.error(e);
-});
+  response.send(images);
 });
 
 var init_server = function() {

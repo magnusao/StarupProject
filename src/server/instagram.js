@@ -12,8 +12,13 @@ var get_tags = function(caption) {
 	return [];
 }
 
+var get_urls = function(images) {
+	return {standard_resolution: images.standard_resolution.url, low_resolution: images.low_resolution.url, 
+		thumbnail: images.thumbnail.url}
+}
+
 var map_new_item = function(item) {
-	return {url: item.images.standard_resolution.url, id: item.id,
+	return {url: get_urls(item.images), id: item.id,
 		comments: item.comments, likes: item.likes, created_time: item.created_time, tags: get_tags(item.caption)}	
 }
 

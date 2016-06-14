@@ -18,7 +18,6 @@ app.get('/init', (req, res) => {
 });
 
 var or_default = function(value, def) {
-	console.log(value);
 	return value ? value : def;
 }
 
@@ -27,10 +26,7 @@ app.get('/imgs', function (req, response) {
 	var sorting = or_default(req.query.s, "default");
 	var count = parseInt(or_default(req.query.count, "20"), 10);
 	var start = parseInt(or_default(req.query.start, "0"), 10);
-	console.log("Sorting " + sorting);
-	console.log("Count " + count);
-	console.log("Stat " + start);
-  response.send(instagram.sort_images(instagram_images).slice(start, start + count));
+  response.send(instagram.sort_images(instagram_images, sorting).slice(start, start + count));
 });
 
 var init_server = function() {
@@ -38,6 +34,7 @@ var init_server = function() {
 		instagram_images = imgs;
 		console.log("Finished loading " + imgs.length + " images.");
 	});	
+
 	app.listen(3000, function () {
 		console.log('Example app listening on port 3000!');
 	});

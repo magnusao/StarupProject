@@ -47,4 +47,8 @@ function mapActionCreatorsToProps(dispatch){
 	return bindActionCreators(GalleryActions, dispatch);
 }
 
+
+
+
+
 export default connect(mapStateToProps, mapActionCreatorsToProps)(Gallery)

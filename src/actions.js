@@ -4,7 +4,6 @@ export const SORTING_CHANGED = 'SORTING_CHANGED';
 export const LOAD_POPULAR_IMAGES = 'LOAD_POPULAR_IMAGES';
 export const LOAD_RECENT_IMAGES = 'LOAD_RECENT_IMAGES';
 
-
 export function selectImage(image) {
   return {
     type: IMAGE_SELECTED,

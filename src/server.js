@@ -1,5 +1,7 @@
 var express = require('express');
 var app = express();
+var API_ENDPOINT = 'https://www.instagram.com/netlightconsulting/media/?max_id=1268135008671348188_577141516';
+
 
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -9,8 +11,6 @@ app.use(function(req, res, next) {
 
 var https = require('https');
 var http = require('http');
-
-var API_ENDPOINT = 'https://www.instagram.com/netlightconsulting/media/?max_id=1268135008671348188_577141516';
 
 
 app.get('/imgs', function (req, response) {

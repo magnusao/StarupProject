@@ -1,4 +1,4 @@
-export const fetchImages = () => {
+export const loadImages = () => {
 	var url = "http://localhost:3000/imgs";
 
   return fetch(url).then(function (response) {

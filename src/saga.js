@@ -5,7 +5,6 @@ import {getState} from './main'
 
 export function* loadImages(sorting) {
   try {
-    console.log(getStore().getState)()
     yield put({type: 'SORTING_CHANGED', sorting});
     const images = yield call(fetchImages, sorting);
     yield put({type: 'IMAGES_LOADED', images})

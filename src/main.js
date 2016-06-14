@@ -11,7 +11,6 @@ import reducer from './reducer'
 
 import {watchForLoadImages, loadImages} from './saga';
 
-
 export const store = createStore(
 	reducer,
 	applyMiddleware(

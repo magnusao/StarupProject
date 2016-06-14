@@ -5,9 +5,12 @@ import {store} from './main'
 
 export function* loadImages() {
   try {
+    console.log("Loading images")
     let sorting = store.getState().sorting;
-    yield put({type: 'SORTING_CHANGED', sorting});
-    const images = yield call(fetchImages, sorting);
+    let loadCount = store.getState().loadCount;
+    let loadIndex = store.getState().loadIndex;
+    //yield put({type: 'SORTING_CHANGED', sorting});
+    const images = yield call(fetchImages, sorting, loadIndex, loadCount);
     yield put({type: 'IMAGES_LOADED', images})
     yield put({type: 'IMAGE_SELECTED', image: images[0]})
   } catch(error) {
@@ -19,6 +22,6 @@ export function* loadImages() {
 export function* watchForLoadImages() {
   while(true) {
     yield take('LOAD_IMAGES');
-    yield call(loadImages, DEFAULT);
+    yield call(loadImages);
   }
 }

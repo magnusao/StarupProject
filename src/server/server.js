@@ -1,0 +1,47 @@
+var express = require('express');
+var app = express();
+
+var instagram = require('./instagram.js')
+
+
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
+var instagram_images = []
+
+
+app.get('/init', (req, res) => {
+	retrieve_all_images(() => res.send(instagram_images));
+});
+
+var or_default = function(value, def) {
+	console.log(value);
+	return value ? value : def;
+}
+
+
+app.get('/imgs', function (req, response) {
+	var sorting = or_default(req.query.s, "default");
+	var count = parseInt(or_default(req.query.count, "20"), 10);
+	var start = parseInt(or_default(req.query.start, "0"), 10);
+	console.log("Sorting " + sorting);
+	console.log("Count " + count);
+	console.log("Stat " + start);
+  response.send(instagram.sort_images(instagram_images).slice(start, start + count));
+});
+
+var init_server = function() {
+	instagram.retrieve_all_images(function(imgs) {
+		instagram_images = imgs;
+		console.log("Finished loading " + imgs.length + " images.");
+	});	
+	app.listen(3000, function () {
+		console.log('Example app listening on port 3000!');
+	});
+}
+
+init_server();
+

@@ -10,7 +10,7 @@ export const fetchImages = (sorting,start,count) => {
   return fetch(url).then(function (response) {
   	  return response.json().then(function (json) {
       return json.map(
-        (d) => d.url
+        (d) => d.url.standard_resolution
       );
     })
   })

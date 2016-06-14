@@ -15,8 +15,17 @@ var API_ENDPOINT = 'https://www.instagram.com/netlightconsulting/media/';
 
 var instagram_images = []
 
+var get_tags = function(caption) {
+	if (caption) {
+		var tags = caption.text.match(/#.+?\b/g)
+		return tags ? tags : [];
+	}
+	return [];
+}
+
 var map_new_item = function(item) {
-	return {url: item.images.standard_resolution.url, id: item.id, comments: item.comments, likes: item.likes}	
+	return {url: item.images.standard_resolution.url, id: item.id,
+		comments: item.comments, likes: item.likes, created_time: item.created_time, tags: get_tags(item.caption)}	
 }
 
 var handle_new_images = (response, images) => {
@@ -34,10 +43,8 @@ var handle_new_images = (response, images) => {
 }
 
 var request_more_images = (handle_result, callback) => {
-	if (!handle_result.more_available) {
-		console.log("Finished loading " + handle_result.images.length + " images.");
-		return callback(handle_result.images)
-	};
+	if (!handle_result.more_available) return callback(handle_result.images);
+
 	var url = API_ENDPOINT + (handle_result.max_id?'?max_id='+handle_result.max_id:'');
 	https.get(url, (res) => {
 		  var data = "";
@@ -62,12 +69,21 @@ var retrieve_all_images = function(callback){
 
 
 app.get('/init', (req, res) => {
-	retrieve_all_images(() => res.send(images));
+	retrieve_all_images(() => res.send(instagram_images));
 });
 
+var or_default = function(value, def) {
+	return value ? value : def;
+}
+
+var sort_images = function(images, by) {
+	return images.slice();
+}
 
 app.get('/imgs', function (req, response) {
-  response.send(images);
+	var sorting = or_default(req.params.sorting, "default");
+	var count = or_default(req.params.count, "20");
+  response.send(sort_images(instagram_images).slice(0,parseInt(count, 10)));
 });
 
 var init_server = function() {

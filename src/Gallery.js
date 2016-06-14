@@ -23,9 +23,10 @@ class InstagramImage extends Component {
   render() {
     const {image} = this.props;
     const divStyle = {backgroundImage: 'url(' + image.url.standard_resolution + ')'};
+    console.log(image);
     return (
           <div className="gallery-image" style={divStyle}>
-            <span className="gallery-image-text">TEXT HERE</span>
+            <span className="gallery-image-text">{image.text}</span>
             <span className="gallery-image-likes">{image.likes.count}</span>
           </div>
     )

@@ -17,9 +17,14 @@ var get_urls = function(images) {
 		thumbnail: images.thumbnail.url}
 }
 
+var get_text = function(caption) {
+	return caption ? caption.text : "";
+}
+
 var map_new_item = function(item) {
 	return {url: get_urls(item.images), id: item.id,
-		comments: item.comments, likes: item.likes, created_time: item.created_time, tags: get_tags(item.caption)}	
+		comments: item.comments, likes: item.likes, created_time: item.created_time, tags: get_tags(item.caption),
+		text: get_text(item.caption)}	
 }
 
 var handle_new_images = (response, images) => {

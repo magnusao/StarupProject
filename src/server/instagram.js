@@ -52,11 +52,11 @@ var request_more_images = (handle_result, callback) => {
 
 };
 
-const exports.retrieve_all_images = function(callback){
+exports.retrieve_all_images = function(callback){
 	request_more_images({more_available: true, images: []}, (images) => callback(images));
-}
+};
 
 
-const exports.sort_images = function(images, by) {
+exports.sort_images = function(images, by) {
 	return images.slice();
-}
+};

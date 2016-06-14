@@ -14,22 +14,16 @@ body {
 }
 
 .image-gallery {
-    width: 640px;
-    display: flex;
-    flex-direction: column;
-    border: 1px solid darkgray;
+    align-items: center;
 }
 
 .gallery-image {
     height: 640px;
     width: 640px;
-    display: flex;
+    display: inline-block;
     align-items: center;
     justify-content: center;
-}
-
-.gallery-image img {
-    width: 100%;
+    background-size: 100%;
 }
 
 .image-scroller {
@@ -44,4 +38,25 @@ body {
     height: 50px;
     padding: 1px;
     border: 1px solid black;
+}
+
+.gallery-image-text {
+    display: inline-block;
+   width: 320px;
+   height: 100%;
+   margin: 550px auto;
+   text-align: center;
+   font-size: 2.0em;
+   color: #6A60A9;
+}
+
+.gallery-image-likes {
+    display: inline-block;
+   width: 320px;
+   height: 100%;
+   margin: 0 auto;
+   text-align: center;
+   font-size: 2.0em;
+   text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+   color: #6A60A9;
 }

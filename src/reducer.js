@@ -1,6 +1,8 @@
+import {RECENT, POPULAR, DEFAULT} from './fetcher'
 const defaultState = {
 	images: [
- 		]
+ 		],
+ 	sorting: DEFAULT
 }
 export default function images(state = defaultState, action) {
 	console.log(action.type);

@@ -3,7 +3,7 @@ const defaultState = {
  		]
 }
 export default function images(state = defaultState, action) {
-	console.log(action.type)
+	console.log(action.type);
 
 
 	switch(action.type){

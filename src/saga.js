@@ -1,8 +1,10 @@
 import {fetchImages, RECENT_IMAGES, POPULAR_IMAGES, DEFAULT} from './fetcher'
 import {put, take, call, fork} from 'redux-saga/effects';
 
+
 export function* loadImages(sorting) {
   try {
+    yield put({type: 'SORTING_CHANGED', sorting});
     const images = yield call(fetchImages, sorting);
     yield put({type: 'IMAGES_LOADED', images})
     yield put({type: 'IMAGE_SELECTED', image: images[0]})

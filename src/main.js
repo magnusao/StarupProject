@@ -16,6 +16,8 @@ export const store = createStore(
 	applyMiddleware(
 		createSagaMiddleware(watchForLoadImages)))
 
+
+
 ReactDOM.render(
   <Provider store={store}>
   	<Gallery />

@@ -72,10 +72,13 @@ exports.sort_images = function(images, sortParam, hashtag) {
   switch(sortParam){
     case  'like' :
     	sortedImages = sortOnLikes(images);
+    	break;
     case  'time':
     	sortedImages = sortOnTime(images);
+    	break;
     default:
     	sortedImages = sortOnLikesAndTime(images);
+    	break;
   }
   if(hashtag != []){
   	for (i=0; i<hashtag.length;i++){

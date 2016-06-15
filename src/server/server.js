@@ -23,7 +23,7 @@ var or_default = function(value, def) {
 
 
 app.get('/imgs', function (req, response) {
-	var hashtag = or_default(req.query.hashtag,["#gameofthrones"]);
+	var hashtag = or_default(req.query.hashtag,[]);
 	var sorting = or_default(req.query.s, "default");
 	var count = parseInt(or_default(req.query.count, "20"), 10);
 	var start = parseInt(or_default(req.query.start, "0"), 10);

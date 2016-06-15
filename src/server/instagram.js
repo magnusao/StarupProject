@@ -67,16 +67,24 @@ exports.retrieve_all_images = function(callback){
 };
 
 
-exports.sort_images = function(images, by) {
-  switch(by){
+exports.sort_images = function(images, sortParam, hashtag) {
+  var sortedImages = [];
+  switch(sortParam){
     case  'like' :
-    	return sortOnLikes(images);
+    	sortedImages = sortOnLikes(images);
     case  'time':
-    	return sortOnTime(images);
+    	sortedImages = sortOnTime(images);
     default:
-    	return sortOnLikesAndTime(images);
+    	sortedImages = sortOnLikesAndTime(images);
   }
+  if(hashtag != ""){
+  	for (i=0; i<hashtag.length;i++){
+  		sortedImages = sortedImages.filter(image => image.tags.some((item) =>item === hashtag[i]));
+  	}
+  }
+  return sortedImages;
 };
+
 
 function sortOnLikesAndTime(images){
   const likeConstant = 1

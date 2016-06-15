@@ -1,4 +1,4 @@
-import {RECENT, POPULAR, DEFAULT} from './fetcher'
+import {TIME, LIKE, DEFAULT} from './fetcher'
 const defaultState = {
 	images: [
  		],

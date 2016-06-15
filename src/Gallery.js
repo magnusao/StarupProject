@@ -10,7 +10,7 @@ import {store} from './main'
 export class Gallery extends Component {
 	componentDidMount(){
 		this.props.loadImages();
-    setInterval(this.props.newImage, 1000000);
+    setInterval(this.props.newImage, 1000);
 
 	}
   render() {
@@ -27,18 +27,18 @@ export class Gallery extends Component {
         </div>
       <div className="image-gallery">
           <div className="image-gallery-top">
-          {images.slice(currentIndex + 4, currentIndex + 9).map((image, index) => (
+          {images.slice(currentIndex + 1, currentIndex + 6).reverse().map((image, index) => (
             <InstagramSmallImage image={image} key={index} />
           ))}
           </div>
           <div className="image-gallery-bottom">
               <div className="image-gallery-bottom-left">
-              {images.slice(currentIndex + 0, currentIndex + 4).map((image, index) => (
+              {images.slice(currentIndex + 6, currentIndex + 10).map((image, index) => (
                 <InstagramSmallImage image={image} key={index} />
               ))}
               </div>
               <div className="image-gallery-bottom-right">
-              {images.slice(currentIndex + 9, currentIndex + 10).map((image, index) => (
+              {images.slice(currentIndex + 0, currentIndex + 1).map((image, index) => (
                 <InstagramImage image={image} key={index} />
               ))}
               </div>

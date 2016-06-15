@@ -14,20 +14,25 @@ body {
 }
 
 .image-gallery {
-    align-items: center;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-wrap: wrap;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .gallery-image {
+
+    position: relative;
+    padding: 8px;
+    margin: 8px;
     height: 200px;
     width: 200px;
-    display: inline-block;
-    align-items: center;
-    justify-content: center;
-    background-size: 100%;
+    border: 1px solid LightGrey;
+    border-radius: 20px;
 }
 
 .image-scroller {
-    display: flex;
     justify-content: space-around;
     overflow: auto;
     overflow-y: hidden;
@@ -40,11 +45,14 @@ body {
     border: 1px solid black;
 }
 
+.gallery-image-picture {
+    width: 200px;
+    height: 200px;
+}
+
 .gallery-image-text {
-    display: inline-block;
-   height: 100%;
-   width: 100px;
-   margin: 180px auto;
+    position: absolute;
+    bottom: 10px;
    text-align: center;
    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
    color: white;
@@ -52,10 +60,9 @@ body {
 }
 
 .gallery-image-likes {
-    display: inline-block;
-   width: 100px;
-   height: 100%;
-   margin: 0 auto;
+    position: absolute;
+    top: 10px;
+    left: 10px;
    text-align: center;
    font-size: .6em;
    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;

@@ -35,11 +35,11 @@ export class Gallery extends Component {
 class InstagramImage extends Component {
   render() {
     const {image} = this.props;
-    const divStyle = {backgroundImage: 'url(' + image.url.standard_resolution + ')'};
     return (
-          <div className="gallery-image" style={divStyle}>
-            <span className="gallery-image-text">{image.text}</span>
-            <span className="gallery-image-likes">{image.likes.count}</span>
+          <div className="gallery-image">
+            <image className="gallery-image-picture" src={image.url.standard_resolution}></image>
+            <div className="gallery-image-text">{image.text}</div>
+            <div className="gallery-image-likes">{image.likes.count}</div>
           </div>
     )
   }

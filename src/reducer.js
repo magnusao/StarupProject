@@ -4,13 +4,14 @@ const defaultState = {
  		],
  	sorting: DEFAULT,
  	loadIndex: 0,
- 	loadCount: 20
+ 	loadCount: 20,
+ 	currentIndex: 0
 }
 export default function images(state = defaultState, action) {
 	console.log(action)
 	switch(action.type){
-		case 'IMAGE_SELECTED':
-			return {...state, selectedImage: action.image};
+		case 'NEW_IMAGE':
+			return {...state, currentIndex: (state.currentIndex + 1) % state.images.length };
 		case 'IMAGES_LOADED':
 			return {...state, images: action.images};
 		case 'SORTING_CHANGED':

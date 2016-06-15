@@ -3,6 +3,8 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as GalleryActions from './actions.js'
 import {DEFAULT, LIKE, TIME} from './fetcher'
+import {store} from './main'
+
 
 
 export class Gallery extends Component {
@@ -12,10 +14,17 @@ export class Gallery extends Component {
 
 	}
   render() {
-    const {images, selectedImage, selectImage, sortingChanged, currentIndex} = this.props;
-    console.log(currentIndex);
-    console.log(images);
+    const {images, selectedImage, selectImage, sortingChanged, loadImages, currentIndex} = this.props;
     return (
+    <div className="content">
+      <div className="menubar">
+          <text> Sorter etter: </text>
+          <form>
+            <text>Popularitet</text><input type="radio" name="sorting" checked={store.getState().sorting == DEFAULT} onChange={() => onRadioSelected(DEFAULT, sortingChanged, loadImages)}/> 
+            <text>Likes</text><input type="radio" name="sorting" checked={store.getState().sorting == LIKE} onChange={() => onRadioSelected(LIKE, sortingChanged, loadImages)}/>
+            <text>Tid</text><input type="radio" name="sorting" checked={store.getState().sorting == TIME} onChange={() => onRadioSelected(TIME, sortingChanged, loadImages)}/>
+          </form>
+        </div>
       <div className="image-gallery">
           <div className="image-gallery-top">
           {images.slice(currentIndex + 4, currentIndex + 9).map((image, index) => (
@@ -33,9 +42,8 @@ export class Gallery extends Component {
                 <InstagramImage image={image} key={index} />
               ))}
               </div>
-          
           </div>
-          
+      </div>
       </div>
     )
   }
@@ -73,8 +81,15 @@ function mapStateToProps(state){
 	}
 }
 
+function onRadioSelected(selected, sortingChanged, loadImages){
+  sortingChanged(selected);
+  loadImages();
+}
+
 function mapActionCreatorsToProps(dispatch){
 	return bindActionCreators(GalleryActions, dispatch);
 }
+
+
 
 export default connect(mapStateToProps, mapActionCreatorsToProps)(Gallery)

@@ -23,10 +23,11 @@ var or_default = function(value, def) {
 
 
 app.get('/imgs', function (req, response) {
+	var hashtag = or_default(req.query.hashtag, ["#netlight", "#gameofthrones"])
 	var sorting = or_default(req.query.s, "default");
 	var count = parseInt(or_default(req.query.count, "20"), 10);
 	var start = parseInt(or_default(req.query.start, "0"), 10);
-  response.send(instagram.sort_images(instagram_images, sorting).slice(start, start + count));
+  response.send(instagram.sort_images(instagram_images, sorting, hashtag).slice(start, start + count));
 });
 
 var init_server = function() {

@@ -10,6 +10,14 @@ body {
     padding: 2px;
 }
 
+.menubar {
+    width: 100%;
+
+}
+.menubar text {
+    margin-right: 5px;
+    margin-left: 10px;
+}
 .gallery-image {
     display: inline-block;
     position: relative;

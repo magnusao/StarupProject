@@ -10,11 +10,12 @@ import {Provider} from 'react-redux';
 import reducer from './reducer'
 
 import {watchForLoadImages, loadImages} from './saga';
-
+const sagaMiddleware = createSagaMiddleware()
 export const store = createStore(
 	reducer,
-	applyMiddleware(
-		createSagaMiddleware(watchForLoadImages)))
+	applyMiddleware(sagaMiddleware));
+
+sagaMiddleware.run(() => watchForLoadImages(store.getState));
 
 ReactDOM.render(
   <Provider store={store}>

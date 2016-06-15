@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as GalleryActions from './actions.js'
 import {DEFAULT, LIKE, TIME} from './fetcher'
+import { WithOutContext as ReactTags } from 'react-tag-input';
 import {store} from './main'
 
 
@@ -10,20 +11,14 @@ import {store} from './main'
 export class Gallery extends Component {
 	componentDidMount(){
 		this.props.loadImages();
+    console.log(ReactTags)
 	}
   render() {
-    const {images, selectedImage, selectImage, sortingChanged, loadImages} = this.props;
+    const {images, selectedImage, selectImage, sortingChanged, loadImages, sorting} = this.props;
     return (
 
       <div className="image-gallery">
-        <div className="menubar">
-          <text> Sorter etter: </text>
-          <form>
-            <text>Popularitet</text><input type="radio" name="sorting" checked={store.getState().sorting == DEFAULT} onChange={() => onRadioSelected(DEFAULT, sortingChanged, loadImages)}/> 
-            <text>Likes</text><input type="radio" name="sorting" checked={store.getState().sorting == LIKE} onChange={() => onRadioSelected(LIKE, sortingChanged, loadImages)}/>
-            <text>Tid</text><input type="radio" name="sorting" checked={store.getState().sorting == TIME} onChange={() => onRadioSelected(TIME, sortingChanged, loadImages)}/>
-          </form>
-        </div>
+        <MenuBar loadImages={loadImages} sortingChanged={sortingChanged} sorting={sorting}/>
             {images.map((image, index) => (
               <InstagramImage image={image} key={index} />
             ))}
@@ -45,22 +40,47 @@ class InstagramImage extends Component {
   }
 }
 
+class MenuBar extends Component {
+  render(){
+    const {sorting, loadImages, sortingChanged} = this.props;
+    function radioSelected(selected){
+        sortingChanged(selected);
+        loadImages();
+    }
+
+    function handleAddition(tag){
+      console.log(tag)
+    }
+       function handleDelete(tag){
+      console.log(tag)
+    }
+    let suggestions = ["mango", "pineapple", "orange", "pear"];
+    let placeholder = "#tagger"
+    let tags = []
+
+    return (
+      <div className="menubar">
+          <form>
+          <text> Sorter etter: </text>
+            <text>Popularitet</text><input type="radio" name="sorting" checked={sorting == DEFAULT} onChange={() => radioSelected(DEFAULT)}/> 
+            <text>Likes</text><input type="radio" name="sorting" checked={sorting == LIKE} onChange={() => radioSelected(LIKE)}/>
+            <text>Tid</text><input type="radio" name="sorting" checked={sorting == TIME} onChange={() => radioSelected(TIME)}/>
+            <ReactTags tags={tags} suggestions={suggestions} labelField={'name'}  placeholder={placeholder} handleAddition={handleAddition} handleDelete={handleDelete} /> 
+            </form>
+        </div>)
+  }
+}
+
 function mapStateToProps(state){
 	return {
 		images: state.images,
-		selectedImage: state.selectedImage
+		selectedImage: state.selectedImage,
+    sorting: state.sorting
 	}
-}
-
-function onRadioSelected(selected, sortingChanged, loadImages){
-  sortingChanged(selected);
-  loadImages();
 }
 
 function mapActionCreatorsToProps(dispatch){
 	return bindActionCreators(GalleryActions, dispatch);
 }
-
-
 
 export default connect(mapStateToProps, mapActionCreatorsToProps)(Gallery)

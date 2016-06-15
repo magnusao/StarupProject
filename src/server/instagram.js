@@ -68,5 +68,37 @@ exports.retrieve_all_images = function(callback){
 
 
 exports.sort_images = function(images, by) {
-	return images.slice();
+  switch(by){
+    case  'like' :
+    	return sortOnLikes(images);
+    case  'time':
+    	return sortOnTime(images);
+    default:
+    	return sortOnLikesAndTime(images);
+  }
 };
+
+function sortOnLikesAndTime(images){
+  const likeConstant = 1
+  const recentConstant = (1/7200000);
+  var currentTime = new Date().getTime();
+  images.forEach((image) => image.rating = (image.likes.count *likeConstant) + (image.created_time - currentTime)*(-recentConstant))
+  var newImages = images.sort(function(a, b) {
+    return parseFloat(b.rating) - parseFloat(a.rating);});
+  return newImages;
+}
+
+function sortOnLikes(images){
+  var newImages = images.sort(function(a, b) {
+    return parseFloat(b.likes.count) - parseFloat(a.likes.count);});
+  console.log(newImages[0].likes);
+  return newImages;
+}
+
+function sortOnTime(images){
+	console.log("onTime")
+  var newImages = images.sort(function(a, b) {
+    return parseFloat(b.created_time) - parseFloat(a.created_time);});
+  console.log("hello")
+  return newImages;   
+}

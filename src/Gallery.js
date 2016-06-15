@@ -7,26 +7,26 @@ import {store} from './main'
 
 
 
-
 export class Gallery extends Component {
 	componentDidMount(){
 		this.props.loadImages();
 	}
   render() {
-    const {images, selectedImage, selectImage, sortingChanged} = this.props;
+    const {images, selectedImage, selectImage, sortingChanged, loadImages} = this.props;
     return (
 
       <div className="image-gallery">
-
-      Sortering
-      <form>
-        <input type="radio" name="sorting" checked={store.getState().sorting == DEFAULT} onChange={() => onRadioSelected(DEFAULT)}/> Default 
-        <input type="radio" name="sorting" checked={store.getState().sorting == LIKE} onChange={() => onRadioSelected(LIKE)}/> Likes 
-        <input type="radio" name="sorting" checked={store.getState().sorting == TIME} onChange={() => onRadioSelected(TIME)}/> Time
-      </form>
-          {images.map((image, index) => (
-            <InstagramImage image={image} key={index} />
-          ))}
+        <div className="menubar">
+          <text> Sorter etter: </text>
+          <form>
+            <text>Popularitet</text><input type="radio" name="sorting" checked={store.getState().sorting == DEFAULT} onChange={() => onRadioSelected(DEFAULT, sortingChanged, loadImages)}/> 
+            <text>Likes</text><input type="radio" name="sorting" checked={store.getState().sorting == LIKE} onChange={() => onRadioSelected(LIKE, sortingChanged, loadImages)}/>
+            <text>Tid</text><input type="radio" name="sorting" checked={store.getState().sorting == TIME} onChange={() => onRadioSelected(TIME, sortingChanged, loadImages)}/>
+          </form>
+        </div>
+            {images.map((image, index) => (
+              <InstagramImage image={image} key={index} />
+            ))}
       </div>
     )
   }
@@ -35,11 +35,11 @@ export class Gallery extends Component {
 class InstagramImage extends Component {
   render() {
     const {image} = this.props;
+    const divStyle = {backgroundImage: 'url(' + image.url.standard_resolution + ')'};
     return (
-          <div className="gallery-image">
-            <image className="gallery-image-picture" src={image.url.standard_resolution}></image>
-            <div className="gallery-image-text">{image.text}</div>
-            <div className="gallery-image-likes">{image.likes.count}</div>
+          <div className="gallery-image" style={divStyle}>
+            <span className="gallery-image-text">{image.text}</span>
+            <span className="gallery-image-likes">{image.likes.count}</span>
           </div>
     )
   }
@@ -52,7 +52,7 @@ function mapStateToProps(state){
 	}
 }
 
-function onRadioSelected(selected){
+function onRadioSelected(selected, sortingChanged, loadImages){
   sortingChanged(selected);
   loadImages();
 }

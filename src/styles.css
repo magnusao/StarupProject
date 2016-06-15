@@ -8,9 +8,13 @@ body {
     padding: 2px;
 }
 
-.egghead {
-    width: 30px;
-    padding: 5px;
+.menubar {
+    width: 100%;
+
+}
+.menubar text {
+    margin-right: 5px;
+    margin-left: 10px;
 }
 
 .image-gallery {

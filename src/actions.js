@@ -17,7 +17,6 @@ export function loadImages(){
 	}
 }
 
-
 export function sortingChanged(sorting){
 	return {
 		type: SORTING_CHANGED,

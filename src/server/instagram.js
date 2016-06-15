@@ -80,9 +80,9 @@ exports.sort_images = function(images, by) {
 
 function sortOnLikesAndTime(images){
   const likeConstant = 1
-  const recentConstant = (1/7200000);
+  const recentConstant = (1/50000);
   var currentTime = new Date().getTime();
-  images.forEach((image) => image.rating = (image.likes.count *likeConstant) + (image.created_time - currentTime)*(-recentConstant))
+  images.forEach((image) => image.rating = (image.likes.count *likeConstant) + (currentTime - image.created_time)*(-recentConstant))
   var newImages = images.sort(function(a, b) {
     return parseFloat(b.rating) - parseFloat(a.rating);});
   return newImages;

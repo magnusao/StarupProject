@@ -5,16 +5,32 @@ import * as GalleryActions from './actions.js'
 import {DEFAULT, LIKE, TIME} from './fetcher'
 import {store} from './main'
 
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
+const guid = function() {
+  function s4() {
+    return Math.floor((1 + Math.random()) * 0x10000)
+      .toString(16)
+      .substring(1);
+  }
+  return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
+    s4() + '-' + s4() + s4() + s4();
+}
 
 export class Gallery extends Component {
 	componentDidMount(){
 		this.props.loadImages();
-    setInterval(this.props.newImage, 1000);
+    setInterval(this.props.newImage, 5000);
 
 	}
   render() {
     const {images, selectedImage, selectImage, sortingChanged, loadImages, currentIndex} = this.props;
+    const topRow = images.slice(currentIndex + 1, currentIndex + 6).reverse().map((image, index) => (
+              <InstagramSmallImage image={image} key={guid()} index={index}/>
+            ));
+    const leftColumn = images.slice(currentIndex + 6, currentIndex + 10).map((image, index) => (
+                    <InstagramSmallImage image={image}  key={guid()} index={index}/>
+                ));
     return (
     <div className="content">
       <div className="menubar">
@@ -27,33 +43,36 @@ export class Gallery extends Component {
         </div>
       <div className="image-gallery">
           <div className="image-gallery-top">
-          {images.slice(currentIndex + 1, currentIndex + 6).reverse().map((image, index) => (
-            <InstagramSmallImage image={image} key={index} />
-          ))}
+            {topRow}
           </div>
           <div className="image-gallery-bottom">
               <div className="image-gallery-bottom-left">
-              {images.slice(currentIndex + 6, currentIndex + 10).map((image, index) => (
-                <InstagramSmallImage image={image} key={index} />
-              ))}
+                {leftColumn}
               </div>
               <div className="image-gallery-bottom-right">
+              <ReactCSSTransitionGroup transitionName="center-img">
               {images.slice(currentIndex + 0, currentIndex + 1).map((image, index) => (
                 <InstagramImage image={image} key={index} />
               ))}
+              </ReactCSSTransitionGroup>
               </div>
           </div>
       </div>
       </div>
     )
   }
+
 }
 
 class InstagramSmallImage extends Component {
+  componentDidMount () {
+    var img = React.findDOMNode(this.refs.img);
+    setTimeout(()=>img.classList.add("enter-active"), 0);
+  }
   render() {
-    const {image} = this.props;
+    const {image, index} = this.props;
     return (
-          <div className="gallery-image">
+          <div className="gallery-image" ref="img">
             <image className="gallery-image-picture" src={image.url.standard_resolution}></image>
           </div>
     )

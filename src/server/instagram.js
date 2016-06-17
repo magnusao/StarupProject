@@ -37,7 +37,7 @@ var handle_new_images = (response, images) => {
 		max_id = response.items[response.items.length-1].id;
 	}
 
-	var more_available = false;//response.more_available;		
+	var more_available = response.more_available;		
 	return {more_available, images, max_id};
 }
 

@@ -45,7 +45,7 @@ export class Gallery extends Component {
                 {leftColumn}
               </div>
               <div className="image-gallery-bottom-right">
-              {images.slice(currentIndex + 0, currentIndex + 1).map((image, index) => (
+              {images.slice(currentIndex + 0, currentIndex + 2).map((image, index) => (
                 <InstagramImage image={image} key={guid()} />
               ))}
               </div>
@@ -59,17 +59,19 @@ export class Gallery extends Component {
 }
 
 class InstagramSmallImage extends Component {
+  constructor(props, context) {
+    super(props, context);
+    this.state = {animationClass: "gallery-image"};
+  };
   componentDidMount () {
-    var img = ReactDOM.findDOMNode(this.refs.img);
-    if (this.props.index != 0) {
-      img.style.transitionDelay = this.props.index / 10 +"s";  
-    }
-    setTimeout(()=>img.classList.add("enter-active"), 1);
+    //this.setState({animationClass:"gallery-image enter-active"});
+    setTimeout(()=>this.setState({animationClass:"gallery-image enter-active"}),1);
   }
   render() {
     const {image, index} = this.props;
+    console.log("Rendering " + this.state.animationClass);
     return (
-          <div className="gallery-image" ref="img">
+          <div className={this.state.animationClass} >
             <img className="gallery-image-picture" src={image.url.standard_resolution}></img>
           </div>
     )

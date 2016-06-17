@@ -5,6 +5,8 @@ import {bindActionCreators} from 'redux';
 import * as GalleryActions from './actions.js';
 import {DEFAULT, LIKE, TIME} from './fetcher';
 import {store} from './main';
+import { WithOutContext as ReactTags } from 'react-tag-input';
+
 
 
 const guid = function() {

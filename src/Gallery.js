@@ -5,7 +5,6 @@ import * as GalleryActions from './actions.js'
 import {DEFAULT, LIKE, TIME} from './fetcher'
 import {store} from './main'
 
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 const guid = function() {
   function s4() {
@@ -50,11 +49,9 @@ export class Gallery extends Component {
                 {leftColumn}
               </div>
               <div className="image-gallery-bottom-right">
-              <ReactCSSTransitionGroup transitionName="center-img">
               {images.slice(currentIndex + 0, currentIndex + 1).map((image, index) => (
                 <InstagramImage image={image} key={index} />
               ))}
-              </ReactCSSTransitionGroup>
               </div>
           </div>
       </div>

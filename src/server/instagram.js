@@ -85,9 +85,17 @@ exports.sort_images = function(images, sortParam, hashtag) {
   		sortedImages = sortedImages.filter(image => image.tags.some((item) =>item === hashtag[i]));
   	}
   }
+  tagCount = getTagCount(images);
+  sortedImages.tagCount = tagCount;
+  console.log(sortedImages.tagCount);
   return sortedImages;
 };
 
+function getTagCount(images){
+  var tagCount = {};
+  images.forEach((image) => image.tags.forEach((tag) => {if(!(tag in tagCount)){tagCount[tag] = 1} else{tagCount[tag] += 1}}));
+  return tagCount;
+}
 
 function sortOnLikesAndTime(images){
   const likeConstant = 1
@@ -95,21 +103,18 @@ function sortOnLikesAndTime(images){
   var currentTime = new Date().getTime();
   images.forEach((image) => image.rating = (image.likes.count *likeConstant) + (currentTime - image.created_time)*(-recentConstant))
   var newImages = images.sort(function(a, b) {
-    return parseFloat(b.rating) - parseFloat(a.rating);});
+  	return parseFloat(b.rating) - parseFloat(a.rating);});
   return newImages;
 }
 
 function sortOnLikes(images){
-  var newImages = images.sort(function(a, b) {
-    return parseFloat(b.likes.count) - parseFloat(a.likes.count);});
-  console.log(newImages[0].likes);
-  return newImages;
+	var newImages = images.sort(function(a, b) {
+		return parseFloat(b.likes.count) - parseFloat(a.likes.count);});
+	return newImages;
 }
 
 function sortOnTime(images){
-	console.log("onTime")
-  var newImages = images.sort(function(a, b) {
-    return parseFloat(b.created_time) - parseFloat(a.created_time);});
-  console.log("hello")
-  return newImages;   
+	var newImages = images.sort(function(a, b) {
+		return parseFloat(b.created_time) - parseFloat(a.created_time);});
+	return newImages;   
 }

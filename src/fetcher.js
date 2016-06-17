@@ -9,6 +9,7 @@ export const fetchImages = (sorting,start,count) => {
   console.log(url)
   return fetch(url).then(function (response) {
   	  return response.json().then(function (json) {
+  	console.log(json)
       return json;
     })
   })

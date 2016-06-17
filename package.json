@@ -11,7 +11,7 @@
     "type": "git",
     "url": "git+https://github.com/joelhooks/egghead-react-redux-image-gallery.git"
   },
-  "author": "Joel Hooks <joelhooks@gmail.com>",
+  "author": "",
   "license": "MIT",
   "dependencies": {
     "babel-polyfill": "6.9.1",
@@ -19,8 +19,10 @@
     "react": "^15.1.0",
     "react-dom": "^15.1.0",
     "react-redux": "^4.4.1",
+    "react-tag-input": "^3.0.3",
     "redux": "^3.3.1",
     "redux-saga": "^0.10.5"
+
   },
   "devDependencies": {
     "babel-cli": "^6.1.18",

@@ -5,6 +5,7 @@ import {bindActionCreators} from 'redux';
 import * as GalleryActions from './actions.js';
 import {DEFAULT, LIKE, TIME} from './fetcher';
 import {store} from './main';
+import { WithOutContext as ReactTags } from 'react-tag-input';
 
 
 const guid = function() {
@@ -24,7 +25,7 @@ export class Gallery extends Component {
 
 	}
   render() {
-    const {images, selectedImage, selectImage, sortingChanged, loadImages, currentIndex} = this.props;
+    const {images, selectedImage, selectImage, sortingChanged, sorting, loadImages, currentIndex} = this.props;
     const topRow = images.slice(currentIndex + 0, currentIndex + 6).reverse().map((image, index) => (
               <InstagramSmallImage image={image} key={guid()} index={index}/>
             ));
@@ -33,16 +34,7 @@ export class Gallery extends Component {
                 ));
     return (
     <div className="content">
-      <div className="menubar">
-          <div className="menubar-content open">
-          <form className="sort-buttons">
-            <text>Popularitet</text><input type="radio" name="sorting" checked={store.getState().sorting == DEFAULT} onChange={() => onRadioSelected(DEFAULT, sortingChanged, loadImages)}/> 
-            <text>Likes</text><input type="radio" name="sorting" checked={store.getState().sorting == LIKE} onChange={() => onRadioSelected(LIKE, sortingChanged, loadImages)}/>
-            <text>Tid</text><input type="radio" name="sorting" checked={store.getState().sorting == TIME} onChange={() => onRadioSelected(TIME, sortingChanged, loadImages)}/>
-          </form>
-        <img id="logo" src="http://localhost:3000/resources/logo.svg"></img>
-        </div>
-        </div>
+    <MenuBar sorting={sorting} loadImages={loadImages} sortingChanged={sortingChanged} />
       <div className="image-gallery">
           <div className="image-gallery-top">
             {topRow}
@@ -58,6 +50,7 @@ export class Gallery extends Component {
               </div>
           </div>
       </div>
+
       </div>
     )
   }
@@ -95,23 +88,61 @@ class InstagramImage extends Component {
   }
 }
 
+class MenuBar extends Component {
+  constructor(props, context) {
+    super(props, context);
+    this.state = {menuOpen: false};
+  };
+  toggleMenu() {
+    this.setState({menuOpen: !this.state.menuOpen});
+  }
+  render(){
+    const {sorting, loadImages, sortingChanged} = this.props;
+    const {menuOpen} = this.state;
+    function radioSelected(selected){
+        sortingChanged(selected);
+        loadImages();
+    }
+
+    function handleAddition(tag){
+      console.log(tag)
+    }
+       function handleDelete(tag){
+      console.log(tag)
+    }
+    let suggestions = ["mango", "pineapple", "orange", "pear"];
+    let placeholder = "#tagger"
+    let tags = []
+    let menubarContentClass = "menubar-content";
+    if (!menuOpen) menubarContentClass += " open";
+
+    return (
+      <div className="menubar" onClick={this.toggleMenu.bind(this)}>
+          <div className={menubarContentClass}>
+          <form className="sort-buttons">
+            <text>Popularitet</text><input type="radio" name="sorting" checked={sorting == DEFAULT} onChange={() => radioSelected(DEFAULT)}/> 
+            <text>Likes</text><input type="radio" name="sorting" checked={sorting == LIKE} onChange={() => radioSelected(LIKE)}/>
+            <text>Tid</text><input type="radio" name="sorting" checked={sorting == TIME} onChange={() => radioSelected(TIME)}/>
+            <span className="tagselect"><ReactTags  tags={tags} suggestions={suggestions} labelField={'name'}  placeholder={placeholder} handleAddition={handleAddition} handleDelete={handleDelete} /> </span>
+           </form>
+        <img id="logo" src="http://localhost:3000/resources/logo.svg"></img>
+        </div>
+        </div>);
+  }
+};
+
 function mapStateToProps(state){
 	return {
 		images: state.images,
 		selectedImage: state.selectedImage,
-    currentIndex: state.currentIndex
+    currentIndex: state.currentIndex,
+    tagCount: state.tagCount,
+    sorting: state.sorting
 	}
-}
-
-function onRadioSelected(selected, sortingChanged, loadImages){
-  sortingChanged(selected);
-  loadImages();
 }
 
 function mapActionCreatorsToProps(dispatch){
 	return bindActionCreators(GalleryActions, dispatch);
 }
-
-
 
 export default connect(mapStateToProps, mapActionCreatorsToProps)(Gallery)

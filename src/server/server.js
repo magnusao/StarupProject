@@ -30,6 +30,7 @@ app.get('/imgs', function (req, response) {
 	response.send(instagram.sort_images(instagram_images, sorting, hashtag).slice(start, start + count));
 });
 
+app.use("/resources", express.static(__dirname + '/resources'));
 
 var init_server = function() {
 	instagram.retrieve_all_images(function(imgs) {

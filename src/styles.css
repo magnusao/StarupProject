@@ -11,9 +11,20 @@ body {
 }
 
 .menubar {
-    display: inline;
-    width: 100%;
+    background-color: #36185F;
+    display: flex;
+    padding: 5px;
+    color: white;
+}
 
+.menubar-content {
+     display: flex;
+     margin-left: 0px;
+     transition: margin-left 0.5s ease-in-out;
+}
+
+.menubar-content.open {
+     margin-left: -440px;
 }
 .menubar text {
     margin-right: 5px;
@@ -67,7 +78,7 @@ body {
 
 .image-gallery {
     width: 40%;
-    margin: 0px auto;
+    margin: 20px auto;
     display: flex;
     flex-wrap: wrap;
 }
@@ -144,6 +155,17 @@ body {
 .image-gallery-bottom-right > .gallery-image {
     width: 100%;
     height: 100%;
+}
+
+#logo {
+    display: inline-block;
+    height: 30px;
+    margin-left: 20px;
+}
+
+.sort-buttons {
+    display: inline-block;
+    padding: 5px;
 }
 
 

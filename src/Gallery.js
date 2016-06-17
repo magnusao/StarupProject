@@ -90,8 +90,16 @@ class InstagramImage extends Component {
 }
 
 class MenuBar extends Component {
+  constructor(props, context) {
+    super(props, context);
+    this.state = {menuOpen: false};
+  };
+  toggleMenu() {
+    this.setState({menuOpen: !this.state.menuOpen});
+  }
   render(){
     const {sorting, loadImages, sortingChanged, tags} = this.props;
+    const {menuOpen} = this.state;
     function radioSelected(selected){
         sortingChanged(selected);
         loadImages();
@@ -106,19 +114,22 @@ class MenuBar extends Component {
     let placeholder = "#tagger"
     let selectedTags =  [ {id: 1, text: "Apples"} ]
     let suggestions = Object.keys(tags);
+    let menubarContentClass = "menubar-content";
+    if (!menuOpen) menubarContentClass += " open";
     return (
-      <div className="menubar">
-          <form>
-          <text> Sorter etter: </text>
+      <div className="menubar" onClick={this.toggleMenu.bind(this)}>
+          <div className={menubarContentClass}>
+          <form className="sort-buttons">
             <text>Popularitet</text><input type="radio" name="sorting" checked={sorting == DEFAULT} onChange={() => radioSelected(DEFAULT)}/> 
             <text>Likes</text><input type="radio" name="sorting" checked={sorting == LIKE} onChange={() => radioSelected(LIKE)}/>
             <text>Tid</text><input type="radio" name="sorting" checked={sorting == TIME} onChange={() => radioSelected(TIME)}/>
             <span className="tagselect"><ReactTags  tags={selectedTags} suggestions={suggestions} labelField={'name'}  placeholder={placeholder} handleAddition={handleAddition} handleDelete={handleDelete} /> </span>
             </form>
-
-        </div>)
+        <img id="logo" src="http://localhost:3000/resources/logo.svg"></img>
+        </div>
+        </div>);
   }
-}
+};
 
 function mapStateToProps(state){
 	return {

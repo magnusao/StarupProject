@@ -1,4 +1,4 @@
-import {fetchImages, DEFAULT, LIKE, TIME} from './fetcher'
+import {fetchImages, fetchTags, DEFAULT, LIKE, TIME} from './fetcher'
 import {put, take, call, fork} from 'redux-saga/effects';
 import {store} from './main'
 
@@ -28,7 +28,7 @@ export function* watchForLoadImages() {
 export function* loadTags() {
   try {
     console.log("Loading tags")
-    const tags = yield call(fetchImages);
+    const tags = yield call(fetchTags);
     yield put({type: 'TAGS_LOADED', tags})
   } catch(error) {
     console.log(error)

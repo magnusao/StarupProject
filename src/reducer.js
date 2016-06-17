@@ -6,7 +6,7 @@ const defaultState = {
  	loadIndex: 0,
  	loadCount: 20,
  	currentIndex: 0,
- 	tags: new Map({"netlight": 20, "oslo": 20})
+ 	tags: {'netlight': 20, 'oslo': 20}
 }
 export default function images(state = defaultState, action) {
 	console.log(action)

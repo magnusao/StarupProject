@@ -104,10 +104,8 @@ class MenuBar extends Component {
       console.log(tag)
     }
     let placeholder = "#tagger"
-    console.log(tags)
     let selectedTags = []
-    let suggestions = tags.keys();
-
+    let suggestions = Object.keys(tags);
     return (
       <div className="menubar">
           <form>

@@ -34,12 +34,14 @@ export class Gallery extends Component {
     return (
     <div className="content">
       <div className="menubar">
-          <text> Sorter etter: </text>
-          <form>
+          <div className="menubar-content open">
+          <form className="sort-buttons">
             <text>Popularitet</text><input type="radio" name="sorting" checked={store.getState().sorting == DEFAULT} onChange={() => onRadioSelected(DEFAULT, sortingChanged, loadImages)}/> 
             <text>Likes</text><input type="radio" name="sorting" checked={store.getState().sorting == LIKE} onChange={() => onRadioSelected(LIKE, sortingChanged, loadImages)}/>
             <text>Tid</text><input type="radio" name="sorting" checked={store.getState().sorting == TIME} onChange={() => onRadioSelected(TIME, sortingChanged, loadImages)}/>
           </form>
+        <img id="logo" src="http://localhost:3000/resources/logo.svg"></img>
+        </div>
         </div>
       <div className="image-gallery">
           <div className="image-gallery-top">

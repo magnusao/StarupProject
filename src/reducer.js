@@ -5,7 +5,8 @@ const defaultState = {
  	sorting: DEFAULT,
  	loadIndex: 0,
  	loadCount: 20,
- 	currentIndex: 0
+ 	currentIndex: 0,
+ 	tags: {'netlight': 20, 'oslo': 20}
 }
 export default function images(state = defaultState, action) {
 	console.log(action)
@@ -20,6 +21,8 @@ export default function images(state = defaultState, action) {
 			return {...state, loadIndex: state.loadIndex + state.loadCount}
 		case 'LOAD_PREVIOUS_PAGE':
 			return {...state, loadIndex: state.loadIndex - state.loadCount}
+		case 'TAGS_LOADED':
+			return {...state, tags: action.tags}
 		default:
 			return state;
 	}

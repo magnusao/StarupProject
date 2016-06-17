@@ -85,13 +85,10 @@ exports.sort_images = function(images, sortParam, hashtag) {
   		sortedImages = sortedImages.filter(image => image.tags.some((item) =>item === hashtag[i]));
   	}
   }
-  tagCount = getTagCount(images);
-  sortedImages.tagCount = tagCount;
-  console.log(sortedImages.tagCount);
   return sortedImages;
 };
 
-function getTagCount(images){
+exports.getTagCount = function(images){
   var tagCount = {};
   images.forEach((image) => image.tags.forEach((tag) => {if(!(tag in tagCount)){tagCount[tag] = 1} else{tagCount[tag] += 1}}));
   return tagCount;

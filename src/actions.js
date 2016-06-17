@@ -3,6 +3,7 @@ export const LOAD_IMAGES = 'LOAD_IMAGES';
 export const SORTING_CHANGED = 'SORTING_CHANGED';
 export const LOAD_PREVIOUS_PAGE = 'LOAD_PREVIOUS_PAGE';
 export const LOAD_NEXT_PAGE = 'LOAD_NEXT_PAGE';
+export const LOAD_TAGS = 'LOAD_TAGS';
 
 export function newImage() {
   return {
@@ -32,5 +33,11 @@ export function loadPreviousPage(){
 export function loadNextPage(){
 	return {
 		type: LOAD_NEXT_PAGE
+	}
+}
+
+export function loadTags(){
+	return {
+		type: LOAD_TAGS
 	}
 }

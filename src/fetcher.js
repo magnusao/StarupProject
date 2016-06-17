@@ -5,8 +5,8 @@ export const DEFAULT = "default";
 const SERVER_BASE_URL = `http://localhost:3000/`
 const TAGS_ENDPOINT = 'tags'
 
-export const fetchImages = (sorting,start,count) => {
-	var url = SERVER_BASE_URL + `imgs?s=${sorting}&start=${start}&count=${count}`
+export const fetchImages = (hashtag,sorting,imgid) => {
+	var url = SERVER_BASE_URL + `imgs?s=${sorting}&imgid=${imgid}`
   return fetch(url).then(function (response) {
   	  return response.json().then(function (json) {
   	console.log(json)

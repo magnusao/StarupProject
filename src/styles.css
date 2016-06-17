@@ -11,13 +11,20 @@ body {
 }
 
 .menubar {
+    display: inline;
     width: 100%;
 
 }
-
 .menubar text {
     margin-right: 5px;
     margin-left: 10px;
+}
+
+.tagselect {
+    display: inline-block;
+    margin-left: 20px;   
+     outline-color: transparent;
+  outline-style: none; 
 }
 
 .gallery-image {

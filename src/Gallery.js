@@ -113,8 +113,9 @@ class MenuBar extends Component {
             <text>Popularitet</text><input type="radio" name="sorting" checked={sorting == DEFAULT} onChange={() => radioSelected(DEFAULT)}/> 
             <text>Likes</text><input type="radio" name="sorting" checked={sorting == LIKE} onChange={() => radioSelected(LIKE)}/>
             <text>Tid</text><input type="radio" name="sorting" checked={sorting == TIME} onChange={() => radioSelected(TIME)}/>
-            <ReactTags tags={tags} suggestions={suggestions} labelField={'name'}  placeholder={placeholder} handleAddition={handleAddition} handleDelete={handleDelete} /> 
+            <span className="tagselect"><ReactTags  tags={tags} suggestions={suggestions} labelField={'name'}  placeholder={placeholder} handleAddition={handleAddition} handleDelete={handleDelete} /> </span>
             </form>
+
         </div>)
   }
 }
@@ -124,6 +125,7 @@ function mapStateToProps(state){
 		images: state.images,
 		selectedImage: state.selectedImage,
     currentIndex: state.currentIndex,
+    tagCount: state.tagCount,
     sorting: state.sorting
 	}
 }

@@ -13,22 +13,23 @@ app.use(function(req, res, next) {
 var instagram_images = []
 
 
-app.get('/init', (req, res) => {
-	retrieve_all_images(() => res.send(instagram_images));
-});
-
 var or_default = function(value, def) {
 	return value ? value : def;
 }
 
+
+app.get('/tags', function (req,response) {
+	response.send(instagram.getTagCount(instagram_images));
+});
 
 app.get('/imgs', function (req, response) {
 	var hashtag = or_default(req.query.hashtag,[]);
 	var sorting = or_default(req.query.s, "default");
 	var count = parseInt(or_default(req.query.count, "20"), 10);
 	var start = parseInt(or_default(req.query.start, "0"), 10);
-  response.send(instagram.sort_images(instagram_images, sorting, hashtag).slice(start, start + count));
+	response.send(instagram.sort_images(instagram_images, sorting, hashtag).slice(start, start + count));
 });
+
 
 var init_server = function() {
 	instagram.retrieve_all_images(function(imgs) {
@@ -40,6 +41,7 @@ var init_server = function() {
 		console.log('Example app listening on port 3000!');
 	});
 }
+
 
 init_server();
 

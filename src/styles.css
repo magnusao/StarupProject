@@ -21,10 +21,11 @@ body {
 }
 
 .tagselect {
+    
     display: inline-block;
     margin-left: 20px;   
-     outline-color: transparent;
-  outline-style: none; 
+    outline-color: transparent;
+    outline-style: none; 
 }
 
 .gallery-image {

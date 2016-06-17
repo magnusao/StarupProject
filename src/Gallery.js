@@ -5,7 +5,7 @@ import {bindActionCreators} from 'redux';
 import * as GalleryActions from './actions.js';
 import {DEFAULT, LIKE, TIME} from './fetcher';
 import {store} from './main';
-import { WithOutContext as ReactTags } from 'react-tag-input';
+import { WithContext as ReactTags } from 'react-tag-input';
 
 
 const guid = function() {
@@ -100,11 +100,11 @@ class MenuBar extends Component {
     function handleAddition(tag){
       console.log(tag)
     }
-       function handleDelete(tag){
+    function handleDelete(i){
       console.log(tag)
     }
     let placeholder = "#tagger"
-    let selectedTags = []
+    let selectedTags =  [ {id: 1, text: "Apples"} ]
     let suggestions = Object.keys(tags);
     return (
       <div className="menubar">

@@ -61,17 +61,20 @@ export class Gallery extends Component {
 }
 
 class InstagramSmallImage extends Component {
+  constructor(props, context) {
+    super(props, context);
+    this.state = {animationClass: "gallery-image"};
+  };
   componentDidMount () {
-    var img = ReactDOM.findDOMNode(this.refs.img);
-    if (this.props.index != 0) {
-      img.style.transitionDelay = this.props.index / 10 +"s";  
-    }
-    setTimeout(()=>img.classList.add("enter-active"), 1);
+    //this.setState({animationClass:"gallery-image enter-active"});
+    setTimeout(()=>this.setState({animationClass:"gallery-image enter-active"}),1);
   }
   render() {
     const {image, index} = this.props;
-    return ( 
-          <div className="gallery-image" ref="img">
+
+    console.log("Rendering " + this.state.animationClass);
+    return (
+          <div className={this.state.animationClass} >
             <img className="gallery-image-picture" src={image.url.standard_resolution}></img>
           </div>
     )
@@ -79,10 +82,18 @@ class InstagramSmallImage extends Component {
 }
 
 class InstagramImage extends Component {
+  constructor(props, context) {
+    super(props, context);
+    this.state = {animationClass: "gallery-image"};
+  };
+  componentDidMount () {
+    //this.setState({animationClass:"gallery-image enter-active"});
+    setTimeout(()=>this.setState({animationClass:"gallery-image enter-active"}),1);
+  }
   render() {
     const {image} = this.props;
     return (
-          <div className="gallery-image">
+          <div className={this.state.animationClass}>
             <img className="gallery-image-picture" src={image.url.standard_resolution}></img>
             <div className="gallery-image-text">{image.text}</div>
             <div className="gallery-image-likes">{image.likes.count}</div>

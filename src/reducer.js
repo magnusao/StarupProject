@@ -4,7 +4,7 @@ const defaultState = {
  		],
  	sorting: DEFAULT,
  	loadIndex: 0,
- 	loadCount: 20,
+ 	loadCount: 100,
  	currentIndex: 0,
  	tags: {'netlight': 20, 'oslo': 20},
  	selectedTags: []

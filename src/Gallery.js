@@ -20,12 +20,13 @@ const guid = function() {
 
 export class Gallery extends Component {
 	componentDidMount(){
+    this.props.loadTags();
 		this.props.loadImages();
     setInterval(this.props.newImage, 5000);
 
 	}
   render() {
-    const {images, selectedImage, selectImage, sortingChanged, sorting, loadImages, currentIndex} = this.props;
+    const {images, selectedImage, selectImage, sortingChanged, sorting, loadImages, loadTags, currentIndex, tags} = this.props;
     const topRow = images.slice(currentIndex + 0, currentIndex + 6).reverse().map((image, index) => (
               <InstagramSmallImage image={image} key={guid()} index={index}/>
             ));
@@ -34,7 +35,7 @@ export class Gallery extends Component {
                 ));
     return (
     <div className="content">
-    <MenuBar sorting={sorting} loadImages={loadImages} sortingChanged={sortingChanged}/>
+    <MenuBar sorting={sorting} loadImages={loadImages} sortingChanged={sortingChanged} tags={tags}/>
       <div className="image-gallery">
           <div className="image-gallery-top">
             {topRow}
@@ -90,7 +91,7 @@ class InstagramImage extends Component {
 
 class MenuBar extends Component {
   render(){
-    const {sorting, loadImages, sortingChanged} = this.props;
+    const {sorting, loadImages, sortingChanged, tags} = this.props;
     function radioSelected(selected){
         sortingChanged(selected);
         loadImages();
@@ -102,9 +103,10 @@ class MenuBar extends Component {
        function handleDelete(tag){
       console.log(tag)
     }
-    let suggestions = ["mango", "pineapple", "orange", "pear"];
     let placeholder = "#tagger"
-    let tags = []
+    console.log(tags)
+    let selectedTags = []
+    let suggestions = tags.keys();
 
     return (
       <div className="menubar">
@@ -113,7 +115,7 @@ class MenuBar extends Component {
             <text>Popularitet</text><input type="radio" name="sorting" checked={sorting == DEFAULT} onChange={() => radioSelected(DEFAULT)}/> 
             <text>Likes</text><input type="radio" name="sorting" checked={sorting == LIKE} onChange={() => radioSelected(LIKE)}/>
             <text>Tid</text><input type="radio" name="sorting" checked={sorting == TIME} onChange={() => radioSelected(TIME)}/>
-            <span className="tagselect"><ReactTags  tags={tags} suggestions={suggestions} labelField={'name'}  placeholder={placeholder} handleAddition={handleAddition} handleDelete={handleDelete} /> </span>
+            <span className="tagselect"><ReactTags  tags={selectedTags} suggestions={suggestions} labelField={'name'}  placeholder={placeholder} handleAddition={handleAddition} handleDelete={handleDelete} /> </span>
             </form>
 
         </div>)
@@ -125,7 +127,7 @@ function mapStateToProps(state){
 		images: state.images,
 		selectedImage: state.selectedImage,
     currentIndex: state.currentIndex,
-    tagCount: state.tagCount,
+    tags: state.tags,
     sorting: state.sorting
 	}
 }

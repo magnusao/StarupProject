@@ -25,10 +25,10 @@ export class Gallery extends Component {
 	}
   render() {
     const {images, selectedImage, selectImage, sortingChanged, loadImages, currentIndex} = this.props;
-    const topRow = images.slice(currentIndex + 1, currentIndex + 6).reverse().map((image, index) => (
+    const topRow = images.slice(currentIndex + 0, currentIndex + 6).reverse().map((image, index) => (
               <InstagramSmallImage image={image} key={guid()} index={index}/>
             ));
-    const leftColumn = images.slice(currentIndex + 6, currentIndex + 10).map((image, index) => (
+    const leftColumn = images.slice(currentIndex + 6, currentIndex + 11).map((image, index) => (
                     <InstagramSmallImage image={image}  key={guid()} index={index}/>
                 ));
     return (
@@ -67,7 +67,10 @@ export class Gallery extends Component {
 class InstagramSmallImage extends Component {
   componentDidMount () {
     var img = React.findDOMNode(this.refs.img);
-    setTimeout(()=>img.classList.add("enter-active"), 0);
+    if (this.props.index != 0) {
+      img.style.transitionDelay = this.props.index / 10 +"s";  
+    }
+    setTimeout(()=>img.classList.add("enter-active"), 1);
   }
   render() {
     const {image, index} = this.props;

@@ -90,7 +90,7 @@ exports.sort_images = function(images, sortParam, hashtag) {
 
 exports.getTagCount = function(images){
   var tagCount = {};
-  images.forEach((image) => image.tags.forEach((tag) => {if(!(tag in tagCount)){tagCount[tag] = 1} else{tagCount[tag] += 1}}));
+  images.forEach((image) => image.tags.forEach((tag) => {if(!(tag in tagCount)){tagCount[tag.slice(1,tag.length)] = 1} else{tagCount[tag] += 1}}));
   return tagCount;
 }
 

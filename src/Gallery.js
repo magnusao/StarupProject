@@ -117,7 +117,7 @@ class MenuBar extends Component {
     let menubarContentClass = "menubar-content";
     if (!menuOpen) menubarContentClass += " open";
     return (
-      <div className="menubar" onClick={this.toggleMenu.bind(this)}>
+      <div className="menubar">
           <div className={menubarContentClass}>
           <form className="sort-buttons">
             <text>Popularitet</text><input type="radio" name="sorting" checked={sorting == DEFAULT} onChange={() => radioSelected(DEFAULT)}/> 
@@ -125,7 +125,7 @@ class MenuBar extends Component {
             <text>Tid</text><input type="radio" name="sorting" checked={sorting == TIME} onChange={() => radioSelected(TIME)}/>
             <span className="tagselect"><ReactTags  tags={selectedTags} suggestions={suggestions} labelField={'name'}  placeholder={placeholder} handleAddition={handleAddition} handleDelete={handleDelete} /> </span>
             </form>
-        <img id="logo" src="http://localhost:3000/resources/logo.svg"></img>
+        <img id="logo" src="http://localhost:3000/resources/logo.svg" onClick={this.toggleMenu.bind(this)}></img>
         </div>
         </div>);
   }

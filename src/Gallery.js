@@ -1,9 +1,10 @@
-import React, {Component} from 'react'
+import React, {Component} from 'react';
+import ReactDOM from 'react-dom';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import * as GalleryActions from './actions.js'
-import {DEFAULT, LIKE, TIME} from './fetcher'
-import {store} from './main'
+import * as GalleryActions from './actions.js';
+import {DEFAULT, LIKE, TIME} from './fetcher';
+import {store} from './main';
 
 
 const guid = function() {
@@ -50,7 +51,7 @@ export class Gallery extends Component {
               </div>
               <div className="image-gallery-bottom-right">
               {images.slice(currentIndex + 0, currentIndex + 1).map((image, index) => (
-                <InstagramImage image={image} key={index} />
+                <InstagramImage image={image} key={guid()} />
               ))}
               </div>
           </div>
@@ -63,7 +64,7 @@ export class Gallery extends Component {
 
 class InstagramSmallImage extends Component {
   componentDidMount () {
-    var img = React.findDOMNode(this.refs.img);
+    var img = ReactDOM.findDOMNode(this.refs.img);
     if (this.props.index != 0) {
       img.style.transitionDelay = this.props.index / 10 +"s";  
     }
@@ -73,7 +74,7 @@ class InstagramSmallImage extends Component {
     const {image, index} = this.props;
     return (
           <div className="gallery-image" ref="img">
-            <image className="gallery-image-picture" src={image.url.standard_resolution}></image>
+            <img className="gallery-image-picture" src={image.url.standard_resolution}></img>
           </div>
     )
   }
@@ -84,7 +85,7 @@ class InstagramImage extends Component {
     const {image} = this.props;
     return (
           <div className="gallery-image">
-            <image className="gallery-image-picture" src={image.url.standard_resolution}></image>
+            <img className="gallery-image-picture" src={image.url.standard_resolution}></img>
             <div className="gallery-image-text">{image.text}</div>
             <div className="gallery-image-likes">{image.likes.count}</div>
           </div>

@@ -1,20 +1,22 @@
-import "babel-polyfill"
+import "babel-polyfill";
 
-import React from 'react'
-import ReactDOM from 'react-dom'
-import Gallery from './Gallery'
+import React from 'react';
+import ReactDOM from 'react-dom';
+import Gallery from './Gallery';
 
-import {createStore, applyMiddleware} from 'redux'
-import createSagaMiddleware from 'redux-saga'
+import {createStore, applyMiddleware} from 'redux';
+import createSagaMiddleware from 'redux-saga';
 import {Provider} from 'react-redux';
-import reducer from './reducer'
+import reducer from './reducer';
 
 import {watchForLoadImages, loadImages} from './saga';
 
+const sagaMiddleware = createSagaMiddleware()
 export const store = createStore(
-	reducer,
-	applyMiddleware(
-		createSagaMiddleware(watchForLoadImages)))
+    reducer,
+    applyMiddleware(sagaMiddleware));
+
+sagaMiddleware.run(() => watchForLoadImages(store.getState));
 
 
 

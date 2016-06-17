@@ -20,6 +20,7 @@ sagaMiddleware.run(() => watchForLoadImages(store.getState));
 
 
 
+
 ReactDOM.render(
   <Provider store={store}>
   	<Gallery />

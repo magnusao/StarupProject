@@ -31,6 +31,10 @@ body {
     margin-left: 10px;
 }
 
+.ReactTags__tagInput input{
+    height: 25px;
+}
+
 .tagselect {
     display: inline-block;
     margin-left: 20px;   
@@ -44,6 +48,8 @@ body {
     border: none;
     color: black;
     margin-left: 10px;
+    text-transform: uppercase;
+
 }
 
 .gallery-image {

@@ -119,7 +119,8 @@ class MenuBar extends Component {
     }
 
     function handleDelete(index, tag){
-
+      let indexOfLastTag  = (selectedTags.length - 1);
+      removeTag(indexOfLastTag, selectedTags[indexOfLastTag])
     }
 
     function handleAdd(tag){
@@ -140,7 +141,15 @@ class MenuBar extends Component {
             <text>Tid</text><input type="radio" name="sorting" checked={sorting == TIME} onChange={() => radioSelected(TIME)}/>
             </form>
             <SeletedTags selectedTags={selectedTags} addTag={handleAdd} removeTag={removeTag}></SeletedTags>
-            <ReactTags suggestions={suggestions} labelField={'name'}  placeholder={placeholder} handleAddition={handleAdd} handleDelete={handleDelete} autocomplete={true}/> 
+            <ReactTags 
+              suggestions={suggestions} 
+              labelField={'name'}  
+              placeholder={placeholder} 
+              handleAddition={handleAdd} 
+              handleDelete={handleDelete} 
+              autocomplete={true}
+              minQueryLength={1}
+              allowDeleteFromEmptyInput={true}/> 
             
         <img id="logo" src="http://localhost:3000/resources/logo.svg" onClick={this.toggleMenu.bind(this)}></img>
         </div>
@@ -157,7 +166,7 @@ class SeletedTags extends Component {
     const {selectedTags, addTag, removeTag} =  this.props;
     return (<div className="selectedTags">
       {selectedTags.map((tag, index) => {return (
-          <button key={index} type="button" className="selectedTagDeleteButton" onClick={handleDelete.bind(this, index, tag)}> {tag} ✕</button> )})}
+          <button key={index} type="button" className="selectedTagDeleteButton" onClick={handleDelete.bind(this, index, tag)}> #{tag} ✕</button> )})}
       </div>)
   }
 }

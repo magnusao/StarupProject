@@ -41,9 +41,15 @@ app.get('/imgs', function (req, response) {
 	var hashtags = or_default(req.query.hashtags.split(","),[""]);
 	var sorting = or_default(req.query.s, "default");
 	var imageId = or_default(req.query.imgid, "");
+	var numberOfPictures = or_default(req.query.count, 20);
 	selectedList = selectedSorting(sorting);
 	selectedList = instagram.sortOnHashtags(selectedList, hashtags);
-	response.send(selectedList);
+	try{
+		response.send(selectedList.slice(0,numberOfPictures));
+	}
+	catch(err){
+		response.send(selectedList);
+	}
 });
 
 app.use("/resources", express.static(__dirname + '/resources'));

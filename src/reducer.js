@@ -15,6 +15,7 @@ export default function images(state = defaultState, action) {
 		case 'NEW_IMAGE':
 			return {...state, currentIndex: (state.currentIndex + 1) % state.images.length };
 		case 'IMAGES_LOADED':
+			console.log(action.images)
 			return {...state, images: action.images, currentIndex:0};
 		case 'SORTING_CHANGED':
 			return {...state, sorting: action.sorting, currentIndex:0}

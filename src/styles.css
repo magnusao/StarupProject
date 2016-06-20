@@ -32,7 +32,11 @@ body {
 }
 
 .ReactTags__tagInput input{
-    height: 25px;
+    height: 24px;
+    outline: none;
+    border: none;
+    border-bottom: solid black 1px;
+    -webkit-appearance: none;
 }
 
 .tagselect {
@@ -44,7 +48,7 @@ body {
 
 
 .selectedTagDeleteButton {
-    height: 25px;
+    height: 30px;
     border: none;
     color: black;
     margin-left: 10px;

@@ -42,9 +42,7 @@ app.get('/imgs', function (req, response) {
 	var sorting = or_default(req.query.s, "default");
 	var imageId = or_default(req.query.imgid, "");
 	selectedList = selectedSorting(sorting);
-	if(hashtags != ""){
-		selectedList = instagram.sortOnHashtags(selectedList, hashtags);
-	}
+	selectedList = instagram.sortOnHashtags(selectedList, hashtags);
 	response.send(selectedList);
 });
 

@@ -92,14 +92,13 @@ exports.sort_images = function(images, sortParam, hashtag) {
   return sortedImages;
 };
 
-
 exports.sortOnHashtags = function(images, hashtags){
-	console.log(images.length);
-	for(i=0; i<hashtags.length; i++){
-		images = images.filter(image => image.tags.some((item) =>item === hashtags[i]))
-	}
-	console.log(images.length);
-	return images;
+	var hashtagsSet = new Set(hashtags);
+	var toReturn = images.filter(image => {
+		console.log(image.tags.filter( tag => hashtagsSet.has(tag) ).length);
+		return image.tags.filter( tag => hashtagsSet.has(tag) ).length > 0;});
+	console.log(toReturn.length);
+	return toReturn
 }
 
 exports.getTagCount = function(images){

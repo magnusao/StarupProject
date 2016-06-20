@@ -165,9 +165,16 @@ body {
    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
    color: white;
 
+   transition: all 0.4s cubic-bezier(0.42, 0, 0.37, 1.43) 0.4s;
+   transform: scale(0.01);
+
    background-image: url("http://localhost:3000/resources/heart.svg");
    background-repeat: no-repeat;
    background-size: cover;
+}
+
+.image-gallery-bottom-right > .gallery-image.enter-active > .gallery-image-likes{
+    transform: scale(1.0);
 }
 
 .gallery-image-likes > span {

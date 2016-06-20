@@ -165,7 +165,7 @@ body {
     position: relative;
     z-index: 10;
     opacity: 0;
-    transition: opacity 0.4s linear 0.5s;
+    transition: opacity 0.4s linear 0.4s;
 }
 
 .image-gallery-bottom-right > .gallery-image.enter-active {

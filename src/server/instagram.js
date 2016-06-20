@@ -6,7 +6,8 @@ var API_ENDPOINT = 'https://www.instagram.com/netlightconsulting/media/';
 
 var get_tags = function(caption) {
 	if (caption) {
-		var tags = caption.text.match(/#.+?\b/g)
+		var tags = caption.text.match(/#.+?\b/g).map((t) => t.slice(1));
+		console.log(tags);
 		return tags ? tags : [];
 	}
 	return [];

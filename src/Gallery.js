@@ -21,7 +21,7 @@ export class Gallery extends Component {
 	componentDidMount(){
     this.props.loadTags();
 		this.props.loadImages();
-    setInterval(this.props.newImage, 5000);
+    setInterval(this.props.newImage, 500000);
 
 	}
   render() {
@@ -68,7 +68,7 @@ class InstagramSmallImage extends Component {
     console.log("Rendering " + this.state.animationClass);
     return (
           <div className={this.state.animationClass} >
-            <img className="gallery-image-picture" src={image.url.standard_resolution}></img>
+            <img className="gallery-image-picture" src={image.imageUrl.thumbnail}></img>
           </div>
     )
   }
@@ -85,9 +85,19 @@ class InstagramImage extends Component {
   }
   render() {
     const {image} = this.props;
+    let media;
+    if (image.type === "video") {
+      console.log("video");
+      media = (<video width="100%" height="100%" autoPlay loop>
+        <source src={image.videoUrl.standard_resolution} type="video/mp4" />
+      </video>);
+    } else {
+      console.log("image");
+      media = <img className="gallery-image-picture" src={image.imageUrl.standard_resolution}></img>;
+    }
     return (
           <div className={this.state.animationClass}>
-            <img className="gallery-image-picture" src={image.url.standard_resolution}></img>
+            {media}
             <div className="gallery-image-text">{image.text}</div>
             <div className="gallery-image-likes"><span>{image.likes.count}</span></div>
           </div>

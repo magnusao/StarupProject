@@ -16,9 +16,14 @@ var get_tags = function(caption) {
 	return [];
 }
 
-var get_urls = function(images) {
+var get_image_urls = function(images) {
 	return {standard_resolution: images.standard_resolution.url, low_resolution: images.low_resolution.url, 
 		thumbnail: images.thumbnail.url}
+}
+
+var get_video_urls = function(videos) {
+	if (!videos) return undefined;
+	return {standard_resolution: videos.standard_resolution.url, low_resolution: videos.low_resolution.url}
 }
 
 var get_text = function(caption) {
@@ -26,9 +31,9 @@ var get_text = function(caption) {
 }
 
 var map_new_item = function(item) {
-	return {url: get_urls(item.images), id: item.id,
+	return {imageUrl: get_image_urls(item.images), videoUrl: get_video_urls(item.videos), id: item.id,
 		comments: item.comments, likes: item.likes, created_time: item.created_time, tags: get_tags(item.caption),
-		text: get_text(item.caption)}	
+		text: get_text(item.caption), type:item.type}	
 }
 
 var handle_new_images = (response, images) => {
@@ -95,11 +100,9 @@ exports.sort_images = function(images, sortParam, hashtag) {
 exports.sortOnHashtags = function(images, hashtags){
 	var hashtagsSet = new Set(hashtags);
 	if (hashtags.length === 1 && hashtags[0] === "") {
-		console.log(images.length);
 		return images;
 	}
 	var toReturn = images.filter(image => image.tags.filter( tag => hashtagsSet.has(tag)).length > 0);
-	console.log(toReturn.length);
 	return toReturn
 }
 

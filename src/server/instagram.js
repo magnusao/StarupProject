@@ -94,9 +94,11 @@ exports.sort_images = function(images, sortParam, hashtag) {
 
 exports.sortOnHashtags = function(images, hashtags){
 	var hashtagsSet = new Set(hashtags);
-	var toReturn = images.filter(image => {
-		console.log(image.tags.filter( tag => hashtagsSet.has(tag) ).length);
-		return image.tags.filter( tag => hashtagsSet.has(tag) ).length > 0;});
+	if (hashtags.length === 1 && hashtags[0] === "") {
+		console.log(images.length);
+		return images;
+	}
+	var toReturn = images.filter(image => image.tags.filter( tag => hashtagsSet.has(tag)).length > 0);
 	console.log(toReturn.length);
 	return toReturn
 }

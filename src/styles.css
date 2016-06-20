@@ -30,17 +30,61 @@ body {
 .menubar text {
     margin-right: 5px;
     margin-left: 10px;
+    font-weight: 200;
 }
 
 .ReactTags__tagInput input{
-    height: 24px;
+    font-size: 20px;
+    font-weight: 200;
+    width: 150px;
+    margin-left: 10px;
+    background:  #36185F;
+    height: 28px;
     outline: none;
     border: none;
-    border-bottom: solid black 1px;
+    color: white;
+    border-bottom: 1px solid white;
     -webkit-appearance: none;
 }
 
+.ReactTags__suggestions{
+    z-index: 1000;
+    position: absolute;
+    background: #36185F;
+    width: 150px;
+    max-height: 30%;
+    padding: 2px;
+    padding-right: 5px;
+    padding-left: 5px;
+    overflow-y: auto;
+    overflow-x: hidden;
+
+}
+
+.ReactTags__suggestions ul{
+    padding-left: 0px;
+    padding-top: 0px;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    list-style-type: none;
+
+}
+
+
+.ReactTags__suggestions li{
+    list-style: none;
+    padding: 8px;
+    border-bottom: 0.5px solid gray;
+
+}
+
+.ReactTags__suggestions mark{
+    background: gray;
+    color: white;
+}
+
 .tagselect {
+
     display: inline-block;
     margin-left: 20px;   
     outline-color: transparent;
@@ -50,10 +94,12 @@ body {
 
 .selectedTagDeleteButton {
     height: 30px;
-    border: none;
-    color: black;
+    border: 0.5px solid white;
+    color: white;
     margin-left: 10px;
     text-transform: uppercase;
+    background:  #36185F;
+
 
 }
 

@@ -137,21 +137,21 @@ class MenuBar extends Component {
       <div className="menubar">
           <div className={menubarContentClass}>
           <form className="sort-buttons">
-            <text>Popularitet</text><input type="radio" name="sorting" checked={sorting == DEFAULT} onChange={() => radioSelected(DEFAULT)}/> 
+            <text>Popularitet</text><input type="radio" name="sorting" checked={sorting == DEFAULT} onChange={() => radioSelected(DEFAULT)}/>
             <text>Likes</text><input type="radio" name="sorting" checked={sorting == LIKE} onChange={() => radioSelected(LIKE)}/>
             <text>Tid</text><input type="radio" name="sorting" checked={sorting == TIME} onChange={() => radioSelected(TIME)}/>
             </form>
-            <SeletedTags selectedTags={selectedTags} addTag={handleAdd} removeTag={removeTag}></SeletedTags>
-            <ReactTags 
-              suggestions={suggestions} 
-              labelField={'name'}  
-              placeholder={placeholder} 
-              handleAddition={handleAdd} 
-              handleDelete={handleDelete} 
+            <SeletedTags selectedTags={selectedTags} addTag={handleAdd} removeTag={removeTag} loadImages={loadImages}></SeletedTags>
+            <ReactTags
+              suggestions={suggestions}
+              labelField={'name'}
+              placeholder={placeholder}
+              handleAddition={handleAdd}
+              handleDelete={handleDelete}
               autocomplete={true}
-              minQueryLength={1}
-              allowDeleteFromEmptyInput={true}/> 
-            
+              minQueryLength={2}
+              allowDeleteFromEmptyInput={true}/>
+
         <img id="logo" src="http://localhost:3000/resources/logo.svg" onClick={this.toggleMenu.bind(this)}></img>
         </div>
         </div>);
@@ -164,10 +164,10 @@ class SeletedTags extends Component {
       removeTag(index, tag);
       loadImages();
     }
-    const {selectedTags, addTag, removeTag} =  this.props;
+    const {selectedTags, addTag, removeTag, loadImages} =  this.props;
     return (<div className="selectedTags">
       {selectedTags.map((tag, index) => {return (
-          <button key={index} type="button" className="selectedTagDeleteButton" onClick={handleDelete.bind(this, index, tag)}> #{tag} ✕</button> )})}
+          <button key={index} type="button" className="selectedTagDeleteButton" onClick={handleDelete.bind(this, index, tag)}> #{tag}</button> )})}
       </div>)
   }
 }
@@ -180,7 +180,7 @@ function mapStateToProps(state){
     sorting: state.sorting,
     tags: state.tags,
     selectedTags: state.selectedTags
-    
+
 	}
 }
 

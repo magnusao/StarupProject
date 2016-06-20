@@ -4,6 +4,8 @@ export const SORTING_CHANGED = 'SORTING_CHANGED';
 export const LOAD_PREVIOUS_PAGE = 'LOAD_PREVIOUS_PAGE';
 export const LOAD_NEXT_PAGE = 'LOAD_NEXT_PAGE';
 export const LOAD_TAGS = 'LOAD_TAGS';
+export const REMOVE_TAG = 'REMOVE_TAG';
+export const ADD_TAG = 'ADD_TAG'
 
 export function newImage() {
   return {
@@ -39,5 +41,20 @@ export function loadNextPage(){
 export function loadTags(){
 	return {
 		type: LOAD_TAGS
+	}
+}
+
+export function removeTag(index, tag){
+	return {
+		type: REMOVE_TAG,
+		index: index,
+		tag: tag
+	}
+}
+
+export function addTag(tag){
+	return{
+		type: ADD_TAG,
+		tag: tag
 	}
 }

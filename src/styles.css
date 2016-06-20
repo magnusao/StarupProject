@@ -34,8 +34,16 @@ body {
 .tagselect {
     display: inline-block;
     margin-left: 20px;   
-     outline-color: transparent;
-  outline-style: none; 
+    outline-color: transparent;
+    outline-style: none; 
+}
+
+
+.selectedTagDeleteButton {
+    height: 25px;
+    border: none;
+    color: black;
+    margin-left: 10px;
 }
 
 .gallery-image {

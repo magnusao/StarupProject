@@ -9,7 +9,8 @@ export function* loadImages() {
     let sorting = store.getState().sorting;
     let loadCount = store.getState().loadCount;
     let loadIndex = store.getState().loadIndex;
-    const images = yield call(fetchImages, sorting, loadIndex, loadCount);
+    let tags = store.getState().selectedTags;
+    const images = yield call(fetchImages, sorting, loadIndex, loadCount, tags);
     yield put({type: 'IMAGES_LOADED', images})
     yield put({type: 'IMAGE_SELECTED', image: images[0]})
   } catch(error) {

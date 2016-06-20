@@ -5,7 +5,9 @@ import {bindActionCreators} from 'redux';
 import * as GalleryActions from './actions.js';
 import {DEFAULT, LIKE, TIME} from './fetcher';
 import {store} from './main';
-import { WithOutContext as ReactTags } from 'react-tag-input';
+import { WithContext as ReactTags } from 'react-tag-input';
+import { DragSource } from 'react-dnd';
+
 
 
 const guid = function() {
@@ -26,7 +28,7 @@ export class Gallery extends Component {
 
 	}
   render() {
-    const {images, selectedImage, selectImage, sortingChanged, sorting, loadImages, loadTags, currentIndex, tags} = this.props;
+    const {images, selectedImage, selectImage, sortingChanged, sorting, loadImages, loadTags, currentIndex, tags, selectedTags, addTag, removeTag} = this.props;
     const topRow = images.slice(currentIndex + 0, currentIndex + 6).reverse().map((image, index) => (
               <InstagramSmallImage image={image} key={guid()} index={index}/>
             ));
@@ -35,7 +37,7 @@ export class Gallery extends Component {
                 ));
     return (
     <div className="content">
-    <MenuBar sorting={sorting} loadImages={loadImages} sortingChanged={sortingChanged} tags={tags}/>
+    <MenuBar sorting={sorting} loadImages={loadImages} sortingChanged={sortingChanged} tags={tags} selectedTags={selectedTags} addTag={addTag} removeTag={removeTag}/>
       <div className="image-gallery">
           <div className="image-gallery-top">
             {topRow}
@@ -69,6 +71,7 @@ class InstagramSmallImage extends Component {
   }
   render() {
     const {image, index} = this.props;
+
     console.log("Rendering " + this.state.animationClass);
     return (
           <div className={this.state.animationClass} >
@@ -108,21 +111,23 @@ class MenuBar extends Component {
     this.setState({menuOpen: !this.state.menuOpen});
   }
   render(){
-    const {sorting, loadImages, sortingChanged, tags} = this.props;
+    const {sorting, loadImages, sortingChanged, tags, selectedTags, addTag, removeTag} = this.props;
     const {menuOpen} = this.state;
     function radioSelected(selected){
         sortingChanged(selected);
         loadImages();
     }
 
-    function handleAddition(tag){
-      console.log(tag)
+    function handleDelete(index, tag){
+
     }
-       function handleDelete(tag){
-      console.log(tag)
+
+    function handleAdd(tag){
+      addTag(tag)
+      loadImages();
     }
+
     let placeholder = "#tagger"
-    let selectedTags = []
     let suggestions = Object.keys(tags);
     let menubarContentClass = "menubar-content";
     if (!menuOpen) menubarContentClass += " open";
@@ -133,21 +138,39 @@ class MenuBar extends Component {
             <text>Popularitet</text><input type="radio" name="sorting" checked={sorting == DEFAULT} onChange={() => radioSelected(DEFAULT)}/> 
             <text>Likes</text><input type="radio" name="sorting" checked={sorting == LIKE} onChange={() => radioSelected(LIKE)}/>
             <text>Tid</text><input type="radio" name="sorting" checked={sorting == TIME} onChange={() => radioSelected(TIME)}/>
-            <span className="tagselect"><ReactTags  tags={selectedTags} suggestions={suggestions} labelField={'name'}  placeholder={placeholder} handleAddition={handleAddition} handleDelete={handleDelete} /> </span>
             </form>
+            <SeletedTags selectedTags={selectedTags} addTag={handleAdd} removeTag={removeTag}></SeletedTags>
+            <ReactTags suggestions={suggestions} labelField={'name'}  placeholder={placeholder} handleAddition={handleAdd} handleDelete={handleDelete} autocomplete={true}/> 
+            
         <img id="logo" src="http://localhost:3000/resources/logo.svg" onClick={this.toggleMenu.bind(this)}></img>
         </div>
         </div>);
   }
 };
 
+class SeletedTags extends Component {
+  render(){
+    function handleDelete(index, tag){
+      removeTag(index, tag);
+      loadImages();
+    }
+    const {selectedTags, addTag, removeTag} =  this.props;
+    return (<div className="selectedTags">
+      {selectedTags.map((tag, index) => {return (
+          <button key={index} type="button" className="selectedTagDeleteButton" onClick={handleDelete.bind(this, index, tag)}> {tag} ✕</button> )})}
+      </div>)
+  }
+}
+
 function mapStateToProps(state){
 	return {
 		images: state.images,
 		selectedImage: state.selectedImage,
     currentIndex: state.currentIndex,
+    sorting: state.sorting,
     tags: state.tags,
-    sorting: state.sorting
+    selectedTags: state.selectedTags
+    
 	}
 }
 

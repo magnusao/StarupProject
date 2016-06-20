@@ -21,7 +21,7 @@ export class Gallery extends Component {
 	componentDidMount(){
     this.props.loadTags();
 		this.props.loadImages();
-    setInterval(this.props.newImage, 5000);
+    setInterval(this.props.newImage, 500000);
 
 	}
   render() {

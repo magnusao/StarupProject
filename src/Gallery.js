@@ -149,7 +149,7 @@ class MenuBar extends Component {
               handleAddition={handleAdd} 
               handleDelete={handleDelete} 
               autocomplete={true}
-              minQueryLength={1}
+              minQueryLength={2}
               allowDeleteFromEmptyInput={true}/> 
             
         <img id="logo" src="http://localhost:3000/resources/logo.svg" onClick={this.toggleMenu.bind(this)}></img>
@@ -167,7 +167,7 @@ class SeletedTags extends Component {
     const {selectedTags, addTag, removeTag, loadImages} =  this.props;
     return (<div className="selectedTags">
       {selectedTags.map((tag, index) => {return (
-          <button key={index} type="button" className="selectedTagDeleteButton" onClick={handleDelete.bind(this, index, tag)}> #{tag} ✕</button> )})}
+          <button key={index} type="button" className="selectedTagDeleteButton" onClick={handleDelete.bind(this, index, tag)}> #{tag}</button> )})}
       </div>)
   }
 }

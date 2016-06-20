@@ -3,6 +3,7 @@ import "babel-polyfill";
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Gallery from './Gallery';
+import MenuBar from './MenuBar';
 
 import {createStore, applyMiddleware} from 'redux';
 import createSagaMiddleware from 'redux-saga';
@@ -24,7 +25,10 @@ sagaMiddleware.run(() => watchForLoadTags(store.getState));
 
 ReactDOM.render(
   <Provider store={store}>
-  	<Gallery />
+    <div className="content">
+	    <MenuBar/>
+	  	<Gallery />
+    </div>
   </Provider>,
   document.getElementById('root')
 );

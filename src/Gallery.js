@@ -129,7 +129,7 @@ class MenuBar extends Component {
       loadImages();
     }
 
-    let placeholder = "tagger"
+    let placeholder = "#"
     let suggestions = Object.keys(tags);
     let menubarContentClass = "menubar-content";
     if (!menuOpen) menubarContentClass += " open";

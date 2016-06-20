@@ -6,8 +6,12 @@ var API_ENDPOINT = 'https://www.instagram.com/netlightconsulting/media/';
 
 var get_tags = function(caption) {
 	if (caption) {
-		var tags = caption.text.match(/#.+?\b/g)
-		return tags ? tags : [];
+		var tags = caption.text.match(/#.+?\b/g);
+		if (tags) {
+			return tags.map((t) => t.slice(1));
+		} else {
+			return [];
+		}
 	}
 	return [];
 }
@@ -100,7 +104,7 @@ exports.sortOnHashtags = function(images, hashtags){
 
 exports.getTagCount = function(images){
   var tagCount = {};
-  images.forEach((image) => image.tags.forEach((tag) => {if(!(tag in tagCount)){tagCount[tag.slice(1,tag.length)] = 1} else{tagCount[tag] += 1}}));
+  images.forEach((image) => image.tags.forEach((tag) => {if(!(tag in tagCount)){tagCount[tag] = 1} else{tagCount[tag] += 1}}));
   return tagCount;
 }
 

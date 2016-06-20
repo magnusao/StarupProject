@@ -60,6 +60,7 @@ body {
     margin: 0;
     padding: 8px;
     box-sizing: border-box;
+    box-shadow: 0px 5px 5px rgba(0,0,0,.4);
     transition: transform 1s ease-in-out;
 }
 

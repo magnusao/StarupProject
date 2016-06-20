@@ -129,7 +129,7 @@ class MenuBar extends Component {
       loadImages();
     }
 
-    let placeholder = "#tagger"
+    let placeholder = "#"
     let suggestions = Object.keys(tags);
     let menubarContentClass = "menubar-content";
     if (!menuOpen) menubarContentClass += " open";
@@ -141,7 +141,7 @@ class MenuBar extends Component {
             <text>Likes</text><input type="radio" name="sorting" checked={sorting == LIKE} onChange={() => radioSelected(LIKE)}/>
             <text>Tid</text><input type="radio" name="sorting" checked={sorting == TIME} onChange={() => radioSelected(TIME)}/>
             </form>
-            <SeletedTags selectedTags={selectedTags} addTag={handleAdd} removeTag={removeTag}></SeletedTags>
+            <SeletedTags selectedTags={selectedTags} addTag={handleAdd} removeTag={removeTag} loadImages={loadImages}></SeletedTags>
             <ReactTags 
               suggestions={suggestions} 
               labelField={'name'}  
@@ -164,7 +164,7 @@ class SeletedTags extends Component {
       removeTag(index, tag);
       loadImages();
     }
-    const {selectedTags, addTag, removeTag} =  this.props;
+    const {selectedTags, addTag, removeTag, loadImages} =  this.props;
     return (<div className="selectedTags">
       {selectedTags.map((tag, index) => {return (
           <button key={index} type="button" className="selectedTagDeleteButton" onClick={handleDelete.bind(this, index, tag)}> #{tag} ✕</button> )})}

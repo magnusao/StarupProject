@@ -121,6 +121,7 @@ class MenuBar extends Component {
     function handleDelete(index, tag){
       let indexOfLastTag  = (selectedTags.length - 1);
       removeTag(indexOfLastTag, selectedTags[indexOfLastTag])
+      loadImages();
     }
 
     function handleAdd(tag){

@@ -37,7 +37,8 @@ function selectedSorting(sorting){
 }
 
 app.get('/imgs', function (req, response) {
-	var hashtags = or_default(req.query.hashtags,[]);
+
+	var hashtags = or_default(req.query.hashtags.split(","),[""]);
 	var sorting = or_default(req.query.s, "default");
 	var imageId = or_default(req.query.imgid, "");
 	selectedList = selectedSorting(sorting);

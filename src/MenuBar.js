@@ -36,7 +36,7 @@ class MenuBar extends Component {
     let placeholder = "#"
     let suggestions = Object.keys(tags);
     let menubarContentClass = "menubar-content";
-    if (!menuOpen) menubarContentClass += " open";
+    if (menuOpen) menubarContentClass += " open";
     return (
       <div className="menubar">
           <div className={menubarContentClass}>

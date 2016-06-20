@@ -24,8 +24,14 @@ body {
      transition: margin-left 0.5s ease-in-out;
 }
 
+.menubar-input {
+    font-size: 14px;
+     display: flex;
+     margin-left: 0px;
+     transition: margin-left 0.5s ease-in-out;
+}
+
 .menubar-content.open {
-     margin-left: -425px;
 }
 .menubar text {
     margin-right: 5px;

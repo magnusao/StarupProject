@@ -136,23 +136,25 @@ class MenuBar extends Component {
     return (
       <div className="menubar">
           <div className={menubarContentClass}>
-          <form className="sort-buttons">
-            <text>Popularitet</text><input type="radio" name="sorting" checked={sorting == DEFAULT} onChange={() => radioSelected(DEFAULT)}/>
-            <text>Likes</text><input type="radio" name="sorting" checked={sorting == LIKE} onChange={() => radioSelected(LIKE)}/>
-            <text>Tid</text><input type="radio" name="sorting" checked={sorting == TIME} onChange={() => radioSelected(TIME)}/>
-            </form>
-            <SeletedTags selectedTags={selectedTags} addTag={handleAdd} removeTag={removeTag} loadImages={loadImages}></SeletedTags>
-            <ReactTags
-              suggestions={suggestions}
-              labelField={'name'}
-              placeholder={placeholder}
-              handleAddition={handleAdd}
-              handleDelete={handleDelete}
-              autocomplete={true}
-              minQueryLength={2}
-              allowDeleteFromEmptyInput={true}/>
-
-        <img id="logo" src="http://localhost:3000/resources/logo.svg" onClick={this.toggleMenu.bind(this)}></img>
+          <img id="logo" src="http://localhost:3000/resources/logo.svg" onClick={this.toggleMenu.bind(this)}></img>
+            <div className="menubar-input">
+              <form className="sort-buttons">
+                <text>Popularitet</text><input type="radio" name="sorting" checked={sorting == DEFAULT} onChange={() => radioSelected(DEFAULT)}/>
+                <text>Likes</text><input type="radio" name="sorting" checked={sorting == LIKE} onChange={() => radioSelected(LIKE)}/>
+                <text>Tid</text><input type="radio" name="sorting" checked={sorting == TIME} onChange={() => radioSelected(TIME)}/>
+              </form>
+              
+              <SeletedTags selectedTags={selectedTags} addTag={handleAdd} removeTag={removeTag} loadImages={loadImages}></SeletedTags>
+              <ReactTags
+                suggestions={suggestions}
+                labelField={'name'}
+                placeholder={placeholder}
+                handleAddition={handleAdd}
+                handleDelete={handleDelete}
+                autocomplete={true}
+                minQueryLength={2}
+                allowDeleteFromEmptyInput={true}/>
+          </div>
         </div>
         </div>);
   }

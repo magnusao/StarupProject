@@ -25,7 +25,7 @@ body {
 
 .menubar-content > .menubar-input {
      display: flex;
-     margin-left: -600px;
+     margin-left: -1000px;
      transition: margin-left 0.5s ease-in-out;
 }
 
@@ -45,6 +45,7 @@ body {
 .selectedTags {
     display: flex;
     align-items: center;
+    border-radius: 5px;
 }
 
 .ReactTags__tags {
@@ -152,12 +153,27 @@ body {
 
 .gallery-image-likes {
     position: absolute;
+    width: 5.1vmin;
+    height: 5vmin;
+    display: flex;
+    justify-content: center;
+    align-items: top;
     top: 10px;
     left: 10px;
-   text-align: center;
-   font-size: 2em;
+    padding: 20px;
+   font-size: 1.5em;
    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
    color: white;
+
+   background-image: url("http://localhost:3000/resources/heart.svg");
+   background-repeat: no-repeat;
+   background-size: cover;
+}
+
+.gallery-image-likes > span {
+    text-align: center;
+    line-height: 15px;
+    padding-left: 2px;
 }
 
 .image-gallery {

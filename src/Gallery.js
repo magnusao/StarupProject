@@ -21,7 +21,7 @@ export class Gallery extends Component {
 	componentDidMount(){
     this.props.loadTags();
 		this.props.loadImages();
-    setInterval(this.props.newImage, 500000);
+    setInterval(this.props.newImage, 5000);
 
 	}
   render() {
@@ -89,7 +89,7 @@ class InstagramImage extends Component {
           <div className={this.state.animationClass}>
             <img className="gallery-image-picture" src={image.url.standard_resolution}></img>
             <div className="gallery-image-text">{image.text}</div>
-            <div className="gallery-image-likes">{image.likes.count}</div>
+            <div className="gallery-image-likes"><span>{image.likes.count}</span></div>
           </div>
     )
   }

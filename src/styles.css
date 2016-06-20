@@ -13,7 +13,6 @@ body {
 .menubar {
     background-color: #36185F;
     display: flex;
-    padding: 5px;
     color: white;
 }
 
@@ -24,11 +23,15 @@ body {
      transition: margin-left 0.5s ease-in-out;
 }
 
-.menubar-input {
-    font-size: 14px;
+.menubar-content > .menubar-input {
+     display: flex;
+     margin-left: -600px;
+     transition: margin-left 0.5s ease-in-out;
+}
+
+.menubar-content.open > .menubar-input {
      display: flex;
      margin-left: 0px;
-     transition: margin-left 0.5s ease-in-out;
 }
 
 .menubar-content.open {
@@ -37,6 +40,11 @@ body {
     margin-right: 5px;
     margin-left: 10px;
     font-weight: 200;
+}
+
+.ReactTags__tags {
+    display: flex;
+    align-items: center;
 }
 
 .ReactTags__tagInput input{
@@ -247,12 +255,17 @@ body {
 #logo {
     display: inline-block;
     height: 30px;
-    margin-left: 20px;
+    padding: 5px;
+    padding-left: 10px;
+    z-index: 10;
+    background:  #36185F;
 }
 
 .sort-buttons {
-    display: inline-block;
+    display: flex;
+    text-align: center;
     padding: 5px;
+    align-items: center;
 }
 
 @font-face {

@@ -4,6 +4,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Gallery from './Gallery';
 import MenuBar from './MenuBar';
+import WordCloud from './WordCloud';
 
 import {createStore, applyMiddleware} from 'redux';
 import createSagaMiddleware from 'redux-saga';
@@ -27,7 +28,9 @@ ReactDOM.render(
   <Provider store={store}>
     <div className="content">
 	    <MenuBar/>
-	  	<Gallery />
+	  	<Gallery/>
+	  	<WordCloud/>
+
     </div>
   </Provider>,
   document.getElementById('root')

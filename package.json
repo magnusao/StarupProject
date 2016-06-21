@@ -16,6 +16,7 @@
   "dependencies": {
     "babel-eslint": "^6.0.4",
     "babel-polyfill": "6.9.1",
+    "d3-cloud": "^1.2.1",
     "eslint": "^2.13.0",
     "express": "^4.14.0",
     "react": "^15.1.0",

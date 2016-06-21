@@ -83,7 +83,6 @@ function mapStateToProps(state){
     sorting: state.sorting,
     tags: state.tags,
     selectedTags: state.selectedTags
-
   }
 }
 

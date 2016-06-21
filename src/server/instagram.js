@@ -105,7 +105,7 @@ exports.sortOnHashtags = function(images, hashtags){
 
 exports.getTagCount = function(images){
   var tagCount = {};
-  images.forEach((image) => image.tags.forEach((tag) => {if(!(tag in tagCount)){tagCount[tag] = 1} else{tagCount[tag] += 1}}));
+  images.forEach((image) => image.tags.forEach((tag) => {tag = tag.toLowerCase(); if(!(tag in tagCount)){tagCount[tag] = 1} else{tagCount[tag] += 1}}));
   return tagCount;
 }
 

@@ -42138,10 +42138,7 @@ var Gallery = exports.Gallery = function (_Component) {
       var addTag = _props.addTag;
       var removeTag = _props.removeTag;
 
-      var topRow = images.slice(currentIndex + 0, currentIndex + 6).reverse().map(function (image, index) {
-        return _react2.default.createElement(InstagramSmallImage, { image: image, key: guid(), index: index });
-      });
-      var leftColumn = images.slice(currentIndex + 6, currentIndex + 11).map(function (image, index) {
+      var leftColumn = images.slice(currentIndex + 1, currentIndex + 5).map(function (image, index) {
         return _react2.default.createElement(InstagramSmallImage, { image: image, key: guid(), index: index });
       });
       return _react2.default.createElement(
@@ -42149,24 +42146,15 @@ var Gallery = exports.Gallery = function (_Component) {
         { className: 'image-gallery' },
         _react2.default.createElement(
           'div',
-          { className: 'image-gallery-top' },
-          topRow
+          { className: 'image-gallery-left' },
+          leftColumn
         ),
         _react2.default.createElement(
           'div',
-          { className: 'image-gallery-bottom' },
-          _react2.default.createElement(
-            'div',
-            { className: 'image-gallery-bottom-left' },
-            leftColumn
-          ),
-          _react2.default.createElement(
-            'div',
-            { className: 'image-gallery-bottom-right' },
-            images.slice(currentIndex + 0, currentIndex + 1).map(function (image, index) {
-              return _react2.default.createElement(InstagramImage, { image: image, key: guid() });
-            })
-          )
+          { className: 'image-gallery-right' },
+          images.slice(currentIndex + 0, currentIndex + 1).map(function (image, index) {
+            return _react2.default.createElement(InstagramImage, { image: image, key: guid() });
+          })
         )
       );
     }
@@ -42245,7 +42233,7 @@ var InstagramImage = function (_Component3) {
       if (image.type === "video") {
         media = _react2.default.createElement(
           'video',
-          { width: '100%', height: '100%', autoPlay: true, loop: true },
+          { className: 'gallery-image-picture', autoPlay: true, loop: true },
           _react2.default.createElement('source', { src: image.videoUrl.standard_resolution, type: 'video/mp4' })
         );
       } else {
@@ -42257,16 +42245,20 @@ var InstagramImage = function (_Component3) {
         media,
         _react2.default.createElement(
           'div',
-          { className: 'gallery-image-text' },
-          image.text
-        ),
-        _react2.default.createElement(
-          'div',
-          { className: 'gallery-image-likes' },
+          { className: 'gallery-image-info' },
           _react2.default.createElement(
-            'span',
-            null,
-            image.likes.count
+            'div',
+            { className: 'gallery-image-likes' },
+            _react2.default.createElement(
+              'span',
+              null,
+              image.likes.count
+            )
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'gallery-image-text' },
+            image.text
           )
         )
       );

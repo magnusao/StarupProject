@@ -42378,7 +42378,7 @@ var MenuBar = function (_Component) {
         _react2.default.createElement(
           'div',
           { className: menubarContentClass },
-          _react2.default.createElement('img', { id: 'logo', src: 'http://localhost:3000/resources/logo.svg', onClick: toggleMenu }),
+          _react2.default.createElement('img', { id: 'logo', src: 'resources/logo.svg', onClick: toggleMenu }),
           _react2.default.createElement(
             'div',
             { className: 'menubar-input' },
@@ -42580,7 +42580,7 @@ Object.defineProperty(exports, "__esModule", {
 var TIME = exports.TIME = "time";
 var LIKE = exports.LIKE = "like";
 var DEFAULT = exports.DEFAULT = "default";
-var SERVER_BASE_URL = "http://localhost:3000/";
+var SERVER_BASE_URL = "/";
 var TAGS_ENDPOINT = 'tags';
 
 var fetchImages = exports.fetchImages = function fetchImages(sorting, start, count, tags) {

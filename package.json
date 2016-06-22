@@ -5,7 +5,8 @@
   "main": "src/main.js",
   "scripts": {
     "test": "babel-node ./src/saga.spec.js | tap-spec",
-    "start": "budo ./src/main.js:build.js --dir ./src --verbose  --live -- -t babelify"
+	"start": "node src/server/server.js",
+	"build": "node ./buildfile.js"
   },
   "repository": {
     "type": "git",
@@ -16,6 +17,7 @@
   "dependencies": {
     "babel-polyfill": "6.9.1",
     "express": "^4.14.0",
+    "gulp-sourcemaps": "^1.6.0",
     "react": "^15.1.0",
     "react-dnd": "^2.1.4",
     "react-dnd-html5-backend": "^2.1.2",
@@ -23,7 +25,10 @@
     "react-redux": "^4.4.1",
     "react-tag-input": "^3.0.3",
     "redux": "^3.3.1",
-    "redux-saga": "^0.10.5"
+    "redux-saga": "^0.10.5",
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "^1.1.0",
+    "watchify": "^3.7.0"
   },
   "devDependencies": {
     "babel-cli": "^6.1.18",

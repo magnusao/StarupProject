@@ -7,11 +7,12 @@ MAINTAINER Alfredo Clemente
 # Install Node.js and other dependencies
 RUN git clone https://github.com/magnusao/StarupProject.git && \
     cd StarupProject && \
-	npm install && \
-	npm run build
+	npm install
 	
 	
 WORKDIR /StarupProject
+	
+RUN npm run build
 
 # Expose port
 EXPOSE  3000

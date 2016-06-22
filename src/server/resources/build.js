@@ -42368,7 +42368,7 @@ var MenuBar = function (_Component) {
         _react2.default.createElement(
           'div',
           { className: menubarContentClass },
-          _react2.default.createElement('img', { id: 'logo', src: 'resources/logo.svg', onClick: toggleMenu }),
+          _react2.default.createElement('img', { className: 'logo menubar-element', src: 'resources/logo.svg', onClick: toggleMenu }),
           _react2.default.createElement(
             'div',
             { className: 'menubar-input' },
@@ -42440,7 +42440,7 @@ var SeletedTags = function (_Component2) {
 
       return _react2.default.createElement(
         'div',
-        { className: 'selectedTags' },
+        { className: 'selectedTags menubar-element' },
         selectedTags.map(function (tag, index) {
           return _react2.default.createElement(
             'button',
@@ -42519,6 +42519,7 @@ var TagInput = function (_Component3) {
           var suggestions = Object.keys(tags).filter(function (t) {
             return t.indexOf(searchText) != -1;
           });
+
           suggestions = suggestions.map(function (t) {
             var searchTextIndex = t.indexOf(searchText);
             return {

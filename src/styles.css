@@ -18,8 +18,9 @@ body {
     color: white;
     height: 50px;
     padding-bottom: 5px;
-    top:0px;
+    top:-48px;
     transition: top 0.5s ease;
+    margin-bottom: 30px;
 }
 
 .menubar:hover {
@@ -43,7 +44,7 @@ body {
     transition: margin-left 0.5s ease-in-out;
 }
 
-#logo {
+.logo {
     display: flex;
     height: auto;
     width: 15%;

@@ -8,7 +8,7 @@ var get_tags = function(caption) {
 	if (caption) {
 		var tags = caption.text.match(/#.+?\b/g);
 		if (tags) {
-			return tags.map((t) => t.slice(1));
+			return tags.map((t) => t.slice(1).toLowerCase());
 		} else {
 			return [];
 		}

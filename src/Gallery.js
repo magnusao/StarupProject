@@ -59,13 +59,11 @@ class InstagramSmallImage extends Component {
     this.state = {animationClass: "gallery-image"};
   };
   componentDidMount () {
-    //this.setState({animationClass:"gallery-image enter-active"});
     setTimeout(()=>this.setState({animationClass:"gallery-image enter-active"}),1);
   }
   render() {
     const {image, index} = this.props;
 
-    console.log("Rendering " + this.state.animationClass);
     return (
           <div className={this.state.animationClass} >
             <img className="gallery-image-picture" src={image.imageUrl.thumbnail}></img>
@@ -80,19 +78,16 @@ class InstagramImage extends Component {
     this.state = {animationClass: "gallery-image"};
   };
   componentDidMount () {
-    //this.setState({animationClass:"gallery-image enter-active"});
     setTimeout(()=>this.setState({animationClass:"gallery-image enter-active"}),1);
   }
   render() {
     const {image} = this.props;
     let media;
     if (image.type === "video") {
-      console.log("video");
       media = (<video width="100%" height="100%" autoPlay loop>
         <source src={image.videoUrl.standard_resolution} type="video/mp4" />
       </video>);
     } else {
-      console.log("image");
       media = <img className="gallery-image-picture" src={image.imageUrl.standard_resolution}></img>;
     }
     return (
@@ -104,6 +99,7 @@ class InstagramImage extends Component {
     )
   }
 }
+
 
 function mapStateToProps(state){
 	return {

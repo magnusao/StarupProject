@@ -9,16 +9,13 @@ export const fetchImages = (sorting,start,count,tags) => {
 	var url = SERVER_BASE_URL + `imgs?s=${sorting}&start=${start}&count=${count}&hashtags=${tags}`
   return fetch(url).then(function (response) {
   	  return response.json().then(function (json) {
-  	console.log(json)
       return json;
     })
   })
 };
 
 export const fetchTags = () => {
-	
 	let url = SERVER_BASE_URL + TAGS_ENDPOINT;
-	console.log("Fetching tags" + url)
 	return fetch(url).then(function(response){
 		return response.json().then(function(json){
 			return json;

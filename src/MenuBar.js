@@ -9,14 +9,9 @@ import { WithContext as ReactTags } from 'react-tag-input';
 class MenuBar extends Component {
   constructor(props, context) {
     super(props, context);
-    this.state = {menuOpen: false};
   };
-  toggleMenu() {
-    this.setState({menuOpen: !this.state.menuOpen});
-  }
   render(){
-    const {sorting, loadImages, sortingChanged, tags, selectedTags, addTag, removeTag} = this.props;
-    const {menuOpen} = this.state;
+    const {sorting, loadImages, sortingChanged, tags, menuOpen, selectedTags, addTag, removeTag, toggleMenu} = this.props;
     function radioSelected(selected){
         sortingChanged(selected);
         loadImages();
@@ -33,21 +28,15 @@ class MenuBar extends Component {
       loadImages();
     }
 
-    let placeholder = "tagger"
+    let placeholder = "#"
     let suggestions = Object.keys(tags);
     let menubarContentClass = "menubar-content";
     if (menuOpen) menubarContentClass += " open";
     return (
       <div className="menubar">
           <div className={menubarContentClass}>
-          <img id="logo" src="http://localhost:3000/resources/logo.svg" onClick={this.toggleMenu.bind(this)}></img>
+          <img id="logo" src="http://localhost:3000/resources/logo.svg" onClick={toggleMenu}></img>
             <div className="menubar-input">
-              <form className="sort-buttons">
-                <text>Popularitet</text><input type="radio" name="sorting" checked={sorting == DEFAULT} onChange={() => radioSelected(DEFAULT)}/>
-                <text>Likes</text><input type="radio" name="sorting" checked={sorting == LIKE} onChange={() => radioSelected(LIKE)}/>
-                <text>Tid</text><input type="radio" name="sorting" checked={sorting == TIME} onChange={() => radioSelected(TIME)}/>
-              </form>
-              
               <SeletedTags selectedTags={selectedTags} addTag={handleAdd} removeTag={removeTag} loadImages={loadImages}></SeletedTags>
               <ReactTags
                 suggestions={suggestions}
@@ -58,6 +47,13 @@ class MenuBar extends Component {
                 autocomplete={true}
                 minQueryLength={2}
                 allowDeleteFromEmptyInput={true}/>
+              <form className="sort-buttons">
+                <input type="radio" name="sorting" checked={sorting == DEFAULT} onChange={() => radioSelected(DEFAULT)}/><text>Popularitet</text>
+                <input type="radio" name="sorting" checked={sorting == LIKE} onChange={() => radioSelected(LIKE)}/><text>Likes</text>
+                <input type="radio" name="sorting" checked={sorting == TIME} onChange={() => radioSelected(TIME)}/><text>Tid</text>
+              </form>
+              
+              
           </div>
         </div>
         </div>);
@@ -82,8 +78,8 @@ function mapStateToProps(state){
   return {
     sorting: state.sorting,
     tags: state.tags,
-    selectedTags: state.selectedTags
-
+    selectedTags: state.selectedTags,
+    menuOpen: state.menuOpen
   }
 }
 

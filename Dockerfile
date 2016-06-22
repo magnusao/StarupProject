@@ -15,7 +15,7 @@ WORKDIR /StarupProject
 RUN npm run build
 
 # Expose port
-EXPOSE  3000
+EXPOSE  80
 
 
 CMD ["npm", "start"]

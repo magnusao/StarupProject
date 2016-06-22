@@ -7,7 +7,7 @@ MAINTAINER Alfredo Clemente
 # Install Node.js and other dependencies
 RUN git clone https://github.com/magnusao/StarupProject.git && \
     cd StarupProject && \
-	npm install
+	npm --loglevel=silent install
 	
 	
 WORKDIR /StarupProject

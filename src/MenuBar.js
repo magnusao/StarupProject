@@ -35,20 +35,10 @@ class MenuBar extends Component {
     return (
       <div className="menubar">
           <div className={menubarContentClass}>
-          <img id="logo" src="resources/logo.svg" onClick={toggleMenu}></img>
+          <img className="logo menubar-element" src="resources/logo.svg" onClick={toggleMenu}></img>
             <div className="menubar-input">
               <SeletedTags selectedTags={selectedTags} addTag={handleAdd} removeTag={removeTag} loadImages={loadImages}></SeletedTags>
               <TagInput tags={tags} addTag={addTag} removeTag={removeTag} loadImages={loadImages} selectedTags={selectedTags}/>
-
-{/*              <ReactTags
-                suggestions={suggestions}
-                labelField={'name'}
-                placeholder={placeholder}
-                handleAddition={handleAdd}
-                handleDelete={handleDelete}
-                autocomplete={true}
-                minQueryLength={2}
-                allowDeleteFromEmptyInput={true}/>*/}
               <form className="sort-buttons">
                 <input type="radio" name="sorting" checked={sorting == DEFAULT} onChange={() => radioSelected(DEFAULT)}/><text>Popularitet</text>
                 <input type="radio" name="sorting" checked={sorting == LIKE} onChange={() => radioSelected(LIKE)}/><text>Likes</text>
@@ -71,7 +61,7 @@ class SeletedTags extends Component {
     }
 
     const {selectedTags, addTag, removeTag, loadImages} =  this.props;
-    return (<div className="selectedTags">
+    return (<div className="selectedTags menubar-element">
       {selectedTags.map((tag, index) => {return (
           <button key={index} type="button" className="selectedTagDeleteButton" onClick={handleDelete.bind(this, index, tag)}> #{tag}</button> )})}
       </div>)
@@ -107,16 +97,15 @@ class TagInput extends Component{
       loadImages();
     }
   }
-  render(){
+  render(){ 
+    console.log("lol")
     const {tags} = this.props;
     const MIN_INPUT_LENGTH = 2;
-    
     function handleChange(input){
       let searchText = input.target.value.toLowerCase();
       this.state.inputValue = searchText;
       if (searchText.length >= MIN_INPUT_LENGTH){
         let suggestions = Object.keys(tags).filter((t)=> (t.indexOf(searchText) != -1))
-        suggestions = suggestions.map((t) => {
             let searchTextIndex = t.indexOf(searchText);
             return {
               text: t,
@@ -134,7 +123,7 @@ class TagInput extends Component{
     return (<div className="TagInput">
               <input type="text" placeholder="#" value={this.state.inputValue} onKeyDown={this.handleKeyDown.bind(this)} onChange={handleChange.bind(this)}></input>
               <ul className="TagInputSuggestions">
-                {this.state.suggestions.map((tag,index) => {return (<li onClick={this.handleAddTag.bind(this, tag.text)} key={index}>{tag.prefix}<mark>{tag.selection}</mark>{tag.suffix}</li>)})}                
+                {this.state.suggestions.map((tag,index) => {return (<li onClick={this.handleAddTag.bind(this, tag.text)} key={index}>{tag.prefix}><mark>{tag.selection}</mark>{tag.suffix}</li>)})}                
               </ul>
             </div>)
   }

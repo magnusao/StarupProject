@@ -35,7 +35,7 @@ class MenuBar extends Component {
     return (
       <div className="menubar">
           <div className={menubarContentClass}>
-          <img id="logo" src="http://localhost:3000/resources/logo.svg" onClick={toggleMenu}></img>
+          <img id="logo" src="resources/logo.svg" onClick={toggleMenu}></img>
             <div className="menubar-input">
               <SeletedTags selectedTags={selectedTags} addTag={handleAdd} removeTag={removeTag} loadImages={loadImages}></SeletedTags>
               <ReactTags

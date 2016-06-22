@@ -53,6 +53,7 @@ app.get('/imgs', function (req, response) {
 });
 
 app.use("/resources", express.static(__dirname + '/resources'));
+app.use("/", express.static(__dirname + '\\..\\'));
 
 function setImageState(){
 	instagram.retrieve_all_images(function(imgs) {
@@ -66,7 +67,7 @@ function setImageState(){
 
 var init_server = function() {
 	setImageState();
-	setInterval(setImageState, 3600000)
+	setInterval(setImageState, 3600000);
 	app.listen(3000, function () {
 		console.log('Example app listening on port 3000!');
 	});

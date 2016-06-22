@@ -26,27 +26,19 @@ export class Gallery extends Component {
 	}
   render() {
     const {images, selectedImage, selectImage, sortingChanged, sorting, loadImages, loadTags, currentIndex, tags, selectedTags, addTag, removeTag} = this.props;
-    const topRow = images.slice(currentIndex + 0, currentIndex + 6).reverse().map((image, index) => (
-              <InstagramSmallImage image={image} key={guid()} index={index}/>
-            ));
-    const leftColumn = images.slice(currentIndex + 6, currentIndex + 11).map((image, index) => (
+    const leftColumn = images.slice(currentIndex + 1, currentIndex + 5).map((image, index) => (
                     <InstagramSmallImage image={image}  key={guid()} index={index}/>
                 ));
     return (
       <div className="image-gallery">
-          <div className="image-gallery-top">
-            {topRow}
-          </div>
-          <div className="image-gallery-bottom">
-              <div className="image-gallery-bottom-left">
+              <div className="image-gallery-left">
                 {leftColumn}
               </div>
-              <div className="image-gallery-bottom-right">
+              <div className="image-gallery-right">
               {images.slice(currentIndex + 0, currentIndex + 1).map((image, index) => (
                 <InstagramImage image={image} key={guid()} />
               ))}
               </div>
-          </div>
       </div>
     )
   }
@@ -84,7 +76,7 @@ class InstagramImage extends Component {
     const {image} = this.props;
     let media;
     if (image.type === "video") {
-      media = (<video width="100%" height="100%" autoPlay loop>
+      media = (<video className="gallery-image-picture" autoPlay loop>
         <source src={image.videoUrl.standard_resolution} type="video/mp4" />
       </video>);
     } else {
@@ -93,8 +85,10 @@ class InstagramImage extends Component {
     return (
           <div className={this.state.animationClass}>
             {media}
-            <div className="gallery-image-text">{image.text}</div>
+            <div className= "gallery-image-info">
             <div className="gallery-image-likes"><span>{image.likes.count}</span></div>
+            <div className="gallery-image-text">{image.text}</div>
+            </div>
           </div>
     )
   }

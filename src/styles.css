@@ -37,15 +37,14 @@ body {
 .menubar-content.open {
 }
 .menubar text {
-    margin-right: 5px;
-    margin-left: 10px;
+    margin-right: 13px;
+    margin-left: 3px;
     font-weight: 200;
 }
 
 .selectedTags {
     display: flex;
     align-items: center;
-    border-radius: 5px;
 }
 
 .ReactTags__tags {
@@ -66,6 +65,8 @@ body {
     border-bottom: 1px solid white;
     -webkit-appearance: none;
 }
+
+
 
 .ReactTags__suggestions{
     z-index: 1000;
@@ -307,12 +308,4 @@ body {
 }
 
 
-/*.image-gallery-bottom-right > span > .gallery-image.center-img-enter {
-    width: 0px;
-}
-
-.image-gallery-bottom-right > span > .gallery-image.center-img-enter.center-img-enter-active {
-    width: 100%;
-    transform: translate(0, 10%);
-}*/
 

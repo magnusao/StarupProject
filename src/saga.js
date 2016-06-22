@@ -5,7 +5,6 @@ import {store} from './main'
 
 export function* loadImages() {
   try {
-    console.log("Loading images")
     let sorting = store.getState().sorting;
     let loadCount = store.getState().loadCount;
     let loadIndex = store.getState().loadIndex;
@@ -28,7 +27,6 @@ export function* watchForLoadImages() {
 
 export function* loadTags() {
   try {
-    console.log("Loading tags")
     const tags = yield call(fetchTags);
     yield put({type: 'TAGS_LOADED', tags})
   } catch(error) {

@@ -42,12 +42,6 @@ class MenuBar extends Component {
           <div className={menubarContentClass}>
           <img id="logo" src="http://localhost:3000/resources/logo.svg" onClick={this.toggleMenu.bind(this)}></img>
             <div className="menubar-input">
-              <form className="sort-buttons">
-                <text>Popularitet</text><input type="radio" name="sorting" checked={sorting == DEFAULT} onChange={() => radioSelected(DEFAULT)}/>
-                <text>Likes</text><input type="radio" name="sorting" checked={sorting == LIKE} onChange={() => radioSelected(LIKE)}/>
-                <text>Tid</text><input type="radio" name="sorting" checked={sorting == TIME} onChange={() => radioSelected(TIME)}/>
-              </form>
-              
               <SeletedTags selectedTags={selectedTags} addTag={handleAdd} removeTag={removeTag} loadImages={loadImages}></SeletedTags>
               <ReactTags
                 suggestions={suggestions}
@@ -58,6 +52,13 @@ class MenuBar extends Component {
                 autocomplete={true}
                 minQueryLength={2}
                 allowDeleteFromEmptyInput={true}/>
+              <form className="sort-buttons">
+                <input type="radio" name="sorting" checked={sorting == DEFAULT} onChange={() => radioSelected(DEFAULT)}/><text>Popularitet</text>
+                <input type="radio" name="sorting" checked={sorting == LIKE} onChange={() => radioSelected(LIKE)}/><text>Likes</text>
+                <input type="radio" name="sorting" checked={sorting == TIME} onChange={() => radioSelected(TIME)}/><text>Tid</text>
+              </form>
+              
+              
           </div>
         </div>
         </div>);

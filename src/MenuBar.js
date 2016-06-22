@@ -9,14 +9,9 @@ import { WithContext as ReactTags } from 'react-tag-input';
 class MenuBar extends Component {
   constructor(props, context) {
     super(props, context);
-    this.state = {menuOpen: false};
   };
-  toggleMenu() {
-    this.setState({menuOpen: !this.state.menuOpen});
-  }
   render(){
-    const {sorting, loadImages, sortingChanged, tags, selectedTags, addTag, removeTag} = this.props;
-    const {menuOpen} = this.state;
+    const {sorting, loadImages, sortingChanged, tags, menuOpen, selectedTags, addTag, removeTag, toggleMenu} = this.props;
     function radioSelected(selected){
         sortingChanged(selected);
         loadImages();
@@ -40,7 +35,7 @@ class MenuBar extends Component {
     return (
       <div className="menubar">
           <div className={menubarContentClass}>
-          <img id="logo" src="http://localhost:3000/resources/logo.svg" onClick={this.toggleMenu.bind(this)}></img>
+          <img id="logo" src="http://localhost:3000/resources/logo.svg" onClick={toggleMenu}></img>
             <div className="menubar-input">
               <SeletedTags selectedTags={selectedTags} addTag={handleAdd} removeTag={removeTag} loadImages={loadImages}></SeletedTags>
               <ReactTags
@@ -83,8 +78,8 @@ function mapStateToProps(state){
   return {
     sorting: state.sorting,
     tags: state.tags,
-    selectedTags: state.selectedTags
-
+    selectedTags: state.selectedTags,
+    menuOpen: state.menuOpen
   }
 }
 

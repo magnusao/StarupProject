@@ -8,6 +8,7 @@
 	"start-reload": "budo ./src/main.js:server/resources/build.js --dir ./src --verbose  --live -- -t babelify",
 	"start": "node src/server/server.js",
 	"build": "node ./buildfile.js"
+
   },
   "repository": {
     "type": "git",
@@ -18,12 +19,9 @@
   "dependencies": {
     "babel-eslint": "^6.0.4",
     "babel-polyfill": "6.9.1",
-    "eslint": "^2.13.0",
     "express": "^4.14.0",
     "gulp-sourcemaps": "^1.6.0",
     "react": "^15.1.0",
-    "react-dnd": "^2.1.4",
-    "react-dnd-html5-backend": "^2.1.2",
     "react-dom": "^15.1.0",
     "react-redux": "^4.4.1",
     "react-tag-input": "^3.0.3",
@@ -42,9 +40,6 @@
     "babelify": "^7.2.0",
     "browserify": "^13.0.0",
     "budo": "^8.0.4",
-    "eslint": "^2.13.0",
-    "eslint-config-airbnb": "^9.0.1",
-    "eslint-plugin-react": "^5.2.2",
     "tap-spec": "^4.1.1",
     "tape": "^4.2.2"
   },

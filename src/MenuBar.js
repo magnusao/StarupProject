@@ -35,27 +35,15 @@ class MenuBar extends Component {
     return (
       <div className="menubar">
           <div className={menubarContentClass}>
-          <img id="logo" src="resources/logo.svg" onClick={toggleMenu}></img>
+          <img className="logo menubar-element" src="resources/logo.svg" onClick={toggleMenu}></img>
             <div className="menubar-input">
-              <SeletedTags selectedTags={selectedTags} addTag={handleAdd} removeTag={removeTag} loadImages={loadImages}></SeletedTags>
-              <TagInput tags={tags} addTag={addTag} removeTag={removeTag} loadImages={loadImages} selectedTags={selectedTags}/>
-
-{/*              <ReactTags
-                suggestions={suggestions}
-                labelField={'name'}
-                placeholder={placeholder}
-                handleAddition={handleAdd}
-                handleDelete={handleDelete}
-                autocomplete={true}
-                minQueryLength={2}
-                allowDeleteFromEmptyInput={true}/>*/}
-              <form className="sort-buttons">
+            <SeletedTags selectedTags={selectedTags} addTag={handleAdd} removeTag={removeTag} loadImages={loadImages}></SeletedTags>
+            <TagInput tags={tags} addTag={addTag} removeTag={removeTag} loadImages={loadImages} selectedTags={selectedTags}/>
+            <form className="sort-buttons">
                 <input type="radio" name="sorting" checked={sorting == DEFAULT} onChange={() => radioSelected(DEFAULT)}/><text>Popularitet</text>
                 <input type="radio" name="sorting" checked={sorting == LIKE} onChange={() => radioSelected(LIKE)}/><text>Likes</text>
                 <input type="radio" name="sorting" checked={sorting == TIME} onChange={() => radioSelected(TIME)}/><text>Tid</text>
-              </form>
-              
-              
+            </form>
           </div>
         </div>
         </div>);
@@ -71,7 +59,7 @@ class SeletedTags extends Component {
     }
 
     const {selectedTags, addTag, removeTag, loadImages} =  this.props;
-    return (<div className="selectedTags">
+    return (<div className="selectedTags menubar-element">
       {selectedTags.map((tag, index) => {return (
           <button key={index} type="button" className="selectedTagDeleteButton" onClick={handleDelete.bind(this, index, tag)}> #{tag}</button> )})}
       </div>)
@@ -107,30 +95,31 @@ class TagInput extends Component{
       loadImages();
     }
   }
-  render(){
+  render(){ 
     const {tags} = this.props;
     const MIN_INPUT_LENGTH = 2;
-    
+
     function handleChange(input){
-      let searchText = input.target.value.toLowerCase();
-      this.state.inputValue = searchText;
-      if (searchText.length >= MIN_INPUT_LENGTH){
-        let suggestions = Object.keys(tags).filter((t)=> (t.indexOf(searchText) != -1))
+    let searchText = input.target.value.toLowerCase();
+    this.state.inputValue = searchText;
+    if (searchText.length >= MIN_INPUT_LENGTH){
+        let suggestions = Object.keys(tags).filter((t)=> (t.indexOf(searchText) != -1));
+        
         suggestions = suggestions.map((t) => {
             let searchTextIndex = t.indexOf(searchText);
             return {
-              text: t,
-              prefix: t.slice(0, searchTextIndex),
-              selection: t.slice(searchTextIndex, searchTextIndex + searchText.length),
-              suffix: t.slice(searchTextIndex + searchText.length)
-            }
-        })
-        this.setState({suggestions: suggestions})
-      } else {
+                text: t,
+                prefix: t.slice(0, searchTextIndex),
+                selection: t.slice(searchTextIndex, searchTextIndex + searchText.length),
+                suffix: t.slice(searchTextIndex + searchText.length)
+                }
+          })
+      this.setState({suggestions: suggestions})
+    } else {
         this.setState({suggestions: []})
-      }
     }
-  
+    }
+    
     return (<div className="TagInput">
               <input type="text" placeholder="#" value={this.state.inputValue} onKeyDown={this.handleKeyDown.bind(this)} onChange={handleChange.bind(this)}></input>
               <ul className="TagInputSuggestions">

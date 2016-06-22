@@ -11,26 +11,58 @@ body {
 }
 
 .menubar {
-    background-color: #36185F;
+    justify-content: flex-start;
     display: flex;
+    position: relative;
+    background-color: #a18cbe;
     color: white;
+    height: 50px;
+    padding-bottom: 5px;
+    top:-48px;
+    transition: top 0.5s ease;
+    margin-bottom: 30px;
+}
+
+.menubar:hover {
+    top: 0px;
+    transition: top 0.5s ease;
+}
+
+.menubar:hover .sort-buttons{
+    display: flex;
 }
 
 .menubar-content {
+    display: flex;
     font-size: 14px;
-     display: flex;
      margin-left: 0px;
      transition: margin-left 0.5s ease-in-out;
 }
 
 .menubar-content > .menubar-input {
-     display: flex;
-     margin-left: -1000px;
-     transition: margin-left 0.5s ease-in-out;
+    display: flex;
+    transition: margin-left 0.5s ease-in-out;
 }
 
+.logo {
+    display: flex;
+    height: auto;
+    width: 150px;
+    padding: 5px;
+    padding-left: 10px;
+    z-index: 10;
+    background:  ;
+}
+
+.sort-buttons {
+    display: flex;
+    text-align: center;
+    padding: 5px;
+    align-items: center;
+}
+
+
 .menubar-content.open > .menubar-input {
-     display: flex;
      margin-left: 0px;
 }
 
@@ -47,32 +79,15 @@ body {
     align-items: center;
 }
 
-.ReactTags__tags {
-    display: flex;
-    align-items: center;
-}
-
-.ReactTags__tagInput input{
-    font-size: 20px;
-    font-weight: 200;
-    width: 150px;
-    margin-left: 10px;
-    background:  #36185F;
-    height: 28px;
-    outline: none;
-    border: none;
-    color: white;
-    border-bottom: 1px solid white;
-    -webkit-appearance: none;
-}
 
 .TagInput input{
+    display: flex;
     font-size: 20px;
     font-weight: 200;
-    width: 150px;
-    margin-left: 10px;
-    background:  #36185F;
-    height: 28px;
+    height: 80%;
+    margin-right: 5px;
+    margin-left: 5px;
+    background:  #a18cbe;
     outline: none;
     border: none;
     color: white;
@@ -81,16 +96,15 @@ body {
 }
 
 .TagInputSuggestions{
+    position: relative;
     padding-right: 5px;
     padding-left: 5px;
     margin-top: 4px;
     margin-bottom: 4px;
     list-style-type: none;
-    position: absolute;
     z-index: 1000;
-    background: #36185F;
-    width: 180px;
-    max-height: 30%;
+    background: #a18cbe;
+    max-height: 300px;
     overflow-y: auto;
     overflow-x: hidden;
 
@@ -99,7 +113,11 @@ body {
 .TagInputSuggestions li{
     list-style: none;
     padding: 8px;
-    border-bottom: 0.5px solid gray;
+    border-bottom: 0.5px solid white;
+}
+
+.TagInputSuggestions li:last-child{
+    border-bottom:none;
 }
 
 .TagInputSuggestions mark{
@@ -107,42 +125,6 @@ body {
     color: white;
 }
 
-
-.ReactTags__suggestions{
-    z-index: 1000;
-    position: absolute;
-    background: #36185F;
-    width: 150px;
-    max-height: 30%;
-    padding: 2px;
-    padding-right: 5px;
-    padding-left: 5px;
-    overflow-y: auto;
-    overflow-x: hidden;
-
-}
-
-.ReactTags__suggestions ul{
-    padding-left: 0px;
-    padding-top: 0px;
-    margin-top: 4px;
-    margin-bottom: 4px;
-    list-style-type: none;
-
-}
-
-
-.ReactTags__suggestions li{
-    list-style: none;
-    padding: 8px;
-    border-bottom: 0.5px solid gray;
-
-}
-
-.ReactTags__suggestions mark{
-    background: gray;
-    color: white;
-}
 
 .tagselect {
     display: inline-block;
@@ -158,7 +140,7 @@ body {
     color: white;
     margin-left: 10px;
     text-transform: uppercase;
-    background:  #36185F;
+    background:  #a18cbe;
 
 
 }
@@ -249,21 +231,6 @@ body {
 }
 
 
-#logo {
-    display: inline-block;
-    height: 30px;
-    padding: 5px;
-    padding-left: 10px;
-    z-index: 10;
-    background:  #36185F;
-}
-
-.sort-buttons {
-    display: flex;
-    text-align: center;
-    padding: 5px;
-    align-items: center;
-}
 
 @font-face {
     font-family: "PT sans regular";

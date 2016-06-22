@@ -5,6 +5,7 @@
   "main": "src/main.js",
   "scripts": {
     "test": "babel-node ./src/saga.spec.js | tap-spec",
+	"start-reload": "budo ./src/main.js:server/resources/build.js --dir ./src --verbose  --live -- -t babelify",
 	"start": "node src/server/server.js",
 	"build": "node ./buildfile.js"
   },

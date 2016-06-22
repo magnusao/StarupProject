@@ -2,7 +2,7 @@
 export const TIME = "time";
 export const LIKE = "like";
 export const DEFAULT = "default";
-const SERVER_BASE_URL = `http://localhost:3000/`
+const SERVER_BASE_URL = `/`
 const TAGS_ENDPOINT = 'tags'
 
 export const fetchImages = (sorting,start,count,tags) => {

@@ -338,12 +338,12 @@ body {
 
 @font-face {
     font-family: "PT sans regular";
-    src: url("http://localhost:3000/resources/fonts/PTS55F.ttf");
+    src: url("resources/fonts/PTS55F.ttf");
 }
 
 @font-face {
     font-family: "Tex gyre adventor";
-    src: url("http://localhost:3000/resources/fonts/texgyreadventor-regular.otf");
+    src: url("resources/fonts/texgyreadventor-regular.otf");
 }
 
 

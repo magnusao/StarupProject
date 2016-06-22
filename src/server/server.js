@@ -68,7 +68,6 @@ function setImageState(){
 var init_server = function() {
 	setImageState();
 	setInterval(setImageState, 3600000);
-	console.log(JSON.stringify(app._router.stack));
 	app.listen(3000, function () {
 		console.log('Example app listening on port 3000!');
 	});

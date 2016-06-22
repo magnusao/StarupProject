@@ -66,6 +66,46 @@ body {
     -webkit-appearance: none;
 }
 
+.TagInput input{
+    font-size: 20px;
+    font-weight: 200;
+    width: 150px;
+    margin-left: 10px;
+    background:  #36185F;
+    height: 28px;
+    outline: none;
+    border: none;
+    color: white;
+    border-bottom: 1px solid white;
+    -webkit-appearance: none; 
+}
+
+.TagInputSuggestions{
+    padding-right: 5px;
+    padding-left: 5px;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    list-style-type: none;
+    position: absolute;
+    z-index: 1000;
+    background: #36185F;
+    width: 180px;
+    max-height: 30%;
+    overflow-y: auto;
+    overflow-x: hidden;
+
+}
+
+.TagInputSuggestions li{
+    list-style: none;
+    padding: 8px;
+    border-bottom: 0.5px solid gray;
+}
+
+.TagInputSuggestions mark{
+    background: gray;
+    color: white;
+}
 
 
 .ReactTags__suggestions{
@@ -105,7 +145,6 @@ body {
 }
 
 .tagselect {
-
     display: inline-block;
     margin-left: 20px;   
     outline-color: transparent;

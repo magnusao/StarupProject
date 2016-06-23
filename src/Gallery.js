@@ -73,9 +73,8 @@ class InstagramImage extends Component {
     setTimeout(()=>this.setState({animationClass:"gallery-image enter-active"}),10);
   }
   markHashtags(text){
-    const RegEx = /#\w+/g
-
-    let tags = text.match(RegEx)
+    const hashtagRegEx = /[#|@]\w+/g
+    let tags = text.match(hashtagRegEx)
     let textArray = [];
 
     tags.forEach((tag)=>{
@@ -89,7 +88,6 @@ class InstagramImage extends Component {
         isTag: true,
         text: text.slice(startIndex, endIndex)
       })
-
       text = text.slice(endIndex, text.length)
     })
     return textArray;

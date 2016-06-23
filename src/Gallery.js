@@ -18,6 +18,13 @@ const guid = function() {
 }
 
 export class Gallery extends Component {
+  getSublist(list, start, length) {
+    let currList = list.slice(start, start + length);
+    let remaining = length - currList.length;
+    if (remaining === 0) return currList;
+    let toAdd = list.slice(0, remaining);
+    return currList.concat(toAdd);
+  }
 	componentDidMount(){
     this.props.loadTags();
 		this.props.loadImages();
@@ -26,7 +33,7 @@ export class Gallery extends Component {
 	}
   render() {
     const {images, selectedImage, selectImage, sortingChanged, sorting, loadImages, loadTags, currentIndex, tags, selectedTags, addTag, removeTag} = this.props;
-    const leftColumn = images.slice(currentIndex + 0, currentIndex + 5).map((image, index) => (
+    const leftColumn = this.getSublist(images, currentIndex, 5).map((image, index) => (
                     <InstagramSmallImage image={image}  key={guid()} index={index}/>
                 ));
     return (
@@ -35,7 +42,7 @@ export class Gallery extends Component {
                 {leftColumn}
               </div>
               <div className="image-gallery-right">
-              {images.slice(currentIndex + 0, currentIndex + 1).map((image, index) => (
+              {this.getSublist(images, currentIndex, 1).map((image, index) => (
                 <InstagramImage image={image} key={guid()} />
               ))}
               </div>
@@ -72,6 +79,26 @@ class InstagramImage extends Component {
   componentDidMount () {
     setTimeout(()=>this.setState({animationClass:"gallery-image enter-active"}),10);
   }
+  markHashtags(text){
+    const hashtagRegEx = /[#|@]\w+/g
+    let tags = text.match(hashtagRegEx)
+    let textArray = [];
+
+    tags.forEach((tag)=>{
+      let startIndex = text.indexOf(tag)
+      let endIndex = startIndex + tag.length
+      textArray.push({
+        isTag: false,
+        text: text.slice(0, startIndex)
+      })
+      textArray.push({
+        isTag: true,
+        text: text.slice(startIndex, endIndex)
+      })
+      text = text.slice(endIndex, text.length)
+    })
+    return textArray;
+  }
   render() {
     const {image} = this.props;
     let media;
@@ -82,13 +109,17 @@ class InstagramImage extends Component {
     } else {
       media = <img className="gallery-image-picture" src={image.imageUrl.standard_resolution}></img>;
     }
-    console.log(image);
-    return (
+  return (
           <div className={this.state.animationClass}>
             {media}
+
             <div className= "gallery-image-info">
             <div className="gallery-image-likes"><span>{image.likes.count}</span></div>
-            <div className="gallery-image-text">{image.text}</div>
+            <div className="gallery-image-text">{this.markHashtags(image.text).map((text) =>  {
+              if (text.isTag) return (<span className="hashtag" > {text.text} </span>)
+              return text.text;
+
+            })}</div>
             <div className="gallery-image-date"><span>{image.date}</span></div>
             <img alt = "logo" className="gallery-image-logo" src = "/resources/NLlogo.svg"/>
             </div>

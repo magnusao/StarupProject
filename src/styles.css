@@ -19,13 +19,13 @@ body {
     height: 50px;
     padding-bottom: 5px;
     top:-48px;
-    transition: top 0.5s ease;
-    margin-bottom: 30px;
+    z-index: 10;
+    transition: all 0.5s ease;
 }
 
 .menubar:hover {
     top: 0px;
-    transition: top 0.5s ease;
+    transition: all 0.5s ease;
 }
 
 .menubar:hover .sort-buttons{
@@ -149,7 +149,7 @@ body {
     display: flex;
     position: relative;
     height: 90%;
-    margin-top: 10px;
+    margin-top: -20px;
     margin-left: 10px;
     justify-content: center;
 }
@@ -162,7 +162,7 @@ body {
 
 
 .gallery-image-text{
-    font-size: 12px;
+    font-size: 2vh;
 }
 
 .gallery-image-likes > span {
@@ -176,7 +176,7 @@ body {
     line-height: 11vh;
     width: 15vh;
     height: 15vh;
-    font-size: 30px;
+    font-size: 5vh;
     text-align: center;
     background: url("resources/heart.svg");
     background-repeat: no-repeat;

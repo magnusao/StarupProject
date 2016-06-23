@@ -72,6 +72,28 @@ class InstagramImage extends Component {
   componentDidMount () {
     setTimeout(()=>this.setState({animationClass:"gallery-image enter-active"}),10);
   }
+  markHashtags(text){
+    const RegEx = /#\w+/g
+
+    let tags = text.match(RegEx)
+    let textArray = [];
+
+    tags.forEach((tag)=>{
+      let startIndex = text.indexOf(tag)
+      let endIndex = startIndex + tag.length
+      textArray.push({
+        isTag: false,
+        text: text.slice(0, startIndex)
+      })
+      textArray.push({
+        isTag: true,
+        text: text.slice(startIndex, endIndex)
+      })
+
+      text = text.slice(endIndex, text.length)
+    })
+    return textArray;
+  }
   render() {
     const {image} = this.props;
     let media;
@@ -82,12 +104,19 @@ class InstagramImage extends Component {
     } else {
       media = <img className="gallery-image-picture" src={image.imageUrl.standard_resolution}></img>;
     }
+
+
     return (
           <div className={this.state.animationClass}>
             {media}
+
             <div className= "gallery-image-info">
             <div className="gallery-image-likes"><span>{image.likes.count}</span></div>
-            <div className="gallery-image-text">{image.text}</div>
+            <div className="gallery-image-text">{this.markHashtags(image.text).map((text) =>  {
+              if (text.isTag) return (<span className="hashtag" > {text.text} </span>)
+              return text.text;
+
+            })}</div>
             <img alt = "logo" className="gallery-image-logo" src = "/resources/NLlogo.svg"/>
             </div>
           </div>

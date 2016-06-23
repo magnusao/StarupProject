@@ -18,6 +18,13 @@ const guid = function() {
 }
 
 export class Gallery extends Component {
+  getSublist(list, start, length) {
+    let currList = list.slice(start, start + length);
+    let remaining = length - currList.length;
+    if (remaining === 0) return currList;
+    let toAdd = list.slice(0, remaining);
+    return currList.concat(toAdd);
+  }
 	componentDidMount(){
     this.props.loadTags();
 		this.props.loadImages();
@@ -26,7 +33,7 @@ export class Gallery extends Component {
 	}
   render() {
     const {images, selectedImage, selectImage, sortingChanged, sorting, loadImages, loadTags, currentIndex, tags, selectedTags, addTag, removeTag} = this.props;
-    const leftColumn = images.slice(currentIndex + 0, currentIndex + 5).map((image, index) => (
+    const leftColumn = this.getSublist(images, currentIndex, 5).map((image, index) => (
                     <InstagramSmallImage image={image}  key={guid()} index={index}/>
                 ));
     return (
@@ -35,7 +42,7 @@ export class Gallery extends Component {
                 {leftColumn}
               </div>
               <div className="image-gallery-right">
-              {images.slice(currentIndex + 0, currentIndex + 1).map((image, index) => (
+              {this.getSublist(images, currentIndex, 1).map((image, index) => (
                 <InstagramImage image={image} key={guid()} />
               ))}
               </div>

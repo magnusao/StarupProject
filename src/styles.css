@@ -199,7 +199,7 @@ body {
     border-radius: 2px;
     margin-bottom: 2vh;
     transition: all .8s ease-in-out;
-    transform: translate(0, 0);
+    transform: translate3d(0, 0);
 }
 
 .image-gallery-left > .gallery-image:last-child{
@@ -211,18 +211,18 @@ body {
 }
 
 .image-gallery-left > .gallery-image.enter-active {
-    transform: translate(0, -23vh);
+    transform: translate3d(0, -23vh, 0);
 }
 
 .image-gallery-left > .gallery-image:first-child {
     z-index: 20;
-    transform: translate(23vh, 0) scale(1.0));
+    transform: translate3d(23vh, 0, 0) scale(1.0));
     opacity: 1;
 }
 
 
 .image-gallery-left > .gallery-image.enter-active:first-child {
-    transform: translate(60vh, 32vh) scale(4.0);
+    transform: translate3d(60vh, 32vh, 0) scale(4.0);
     opacity: 0;
 }
 

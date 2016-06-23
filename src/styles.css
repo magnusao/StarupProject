@@ -177,6 +177,12 @@ body {
     background-position: center; 
 }
 
+.gallery-image-date{
+    align-self: flex-end;
+    margin-bottom: auto;
+    margin-right: 20px;
+}
+
 .gallery-image-logo{
     width: 100%;
 

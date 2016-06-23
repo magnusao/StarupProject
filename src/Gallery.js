@@ -99,9 +99,40 @@ class InstagramImage extends Component {
     })
     return textArray;
   }
+
+timeSince(date) {
+    date = new Date(parseInt(date)*1000)
+
+    var seconds = Math.floor((new Date() - date) / 1000);
+
+    var interval = Math.floor(seconds / 31536000);
+
+    if (interval > 1) {
+        return interval + " år siden";
+    }
+    interval = Math.floor(seconds / 2592000);
+    if (interval > 1) {
+        return interval + " måneder siden";
+    }
+    interval = Math.floor(seconds / 86400);
+    if (interval > 1) {
+        return interval + " dager siden";
+    }
+    interval = Math.floor(seconds / 3600);
+    if (interval > 1) {
+        return interval + " timer siden";
+    }
+    interval = Math.floor(seconds / 60);
+    if (interval > 1) {
+        return interval + " minutter siden";
+    }
+    return Math.floor(seconds) + " sekunder siden";
+}
+
   render() {
     const {image} = this.props;
     let media;
+    console.log(image)
     if (image.type === "video") {
       media = (<video className="gallery-image-picture" autoPlay loop>
         <source src={image.videoUrl.standard_resolution} type="video/mp4" />
@@ -120,7 +151,7 @@ class InstagramImage extends Component {
               return text.text;
 
             })}</div>
-            <div className="gallery-image-date"><span>{image.date}</span></div>
+            <div className="gallery-image-date">- {this.timeSince(image.created_time)}</div>
             <img alt = "logo" className="gallery-image-logo" src = "/resources/NLlogo.svg"/>
             </div>
           </div>

@@ -194,10 +194,10 @@ body {
 .image-gallery-left > .gallery-image {
     height: 19vh;
     width: 19vh;
-    padding: 7px;
+    padding: 1vh;
     background-color: white;
     border-radius: 2px;
-    margin-bottom: 1.65vh;
+    margin-bottom: 2vh;
     transition: all .8s ease-in-out;
     transform: translate(0, 0);
 }
@@ -229,7 +229,7 @@ body {
 .image-gallery-right > .gallery-image > .gallery-image-picture {
     width: 90vh;
     height: 90vh;
-    padding: 15px;
+    padding: 2vh;
     border-radius: 5px;
     background-color: white;
     box-sizing: border-box;
@@ -243,7 +243,7 @@ body {
     width: 40vh;
     border-radius: 5px;
     margin-left: 10px;
-    padding: 10px;
+    padding: 2vh;
     background-color: white;
     align-items: center;
 }

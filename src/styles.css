@@ -248,6 +248,12 @@ body {
     align-items: center;
 }
 
+.hashtag{
+    color: #6A60A9;
+
+
+}
+
 .image-gallery-right > .gallery-image {
     height: 100%;
     display: flex;

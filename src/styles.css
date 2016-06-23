@@ -233,7 +233,7 @@ body {
 
 
 .image-gallery-left > .gallery-image.enter-active:first-child {
-    transform: translate(60vh, 40vh) scale(4.0);
+    transform: translate(60vh, 32vh) scale(4.0);
     opacity: 0;
 }
 

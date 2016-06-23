@@ -163,7 +163,8 @@ body {
 
 
 .gallery-image-text{
-    font-size: 2vh;
+    line-height: 4vh;
+    font-size: 2.3vh;
 }
 
 .gallery-image-likes > span {

@@ -11,47 +11,43 @@ body {
 }
 
 .menubar {
+    vertical-align: center;
     justify-content: flex-start;
     display: flex;
-    position: relative;
     background-color: #6A60A9;
     color: white;
-    height: 50px;
+    height: 3vh;
     padding-bottom: 5px;
-    top:-48px;
+    top:0px;
     z-index: 10;
-    transition: all 0.5s ease;
-}
-
-.menubar:hover {
-    top: 0px;
-    transition: all 0.5s ease;
-}
-
-.menubar:hover .sort-buttons{
-    display: flex;
 }
 
 .menubar-content {
     display: flex;
     font-size: 14px;
-     margin-left: 0px;
-     transition: margin-left 0.5s ease-in-out;
+    margin-left: 0px;
+
 }
 
-.menubar-content > .menubar-input {
+.menubar-input  {
+    margin-left: -1000px;
     display: flex;
     transition: margin-left 0.5s ease-in-out;
 }
 
+.menubar-input.open {
+    margin-left: 0px;
+}
+
+
 .logo {
     display: flex;
     height: auto;
-    width: 150px;
+    width: auto;
     padding: 5px;
-    padding-left: 10px;
     z-index: 10;
-    background:  ;
+    background:  #6A60A9;
+    color: white;
 }
 
 .sort-buttons {
@@ -62,12 +58,7 @@ body {
 }
 
 
-.menubar-content.open > .menubar-input {
-     margin-left: 0px;
-}
 
-.menubar-content.open {
-}
 .menubar text {
     margin-right: 13px;
     margin-left: 3px;
@@ -135,21 +126,19 @@ body {
 
 
 .selectedTagDeleteButton {
-    height: 30px;
+    height: 80%;
     border: 0.5px solid white;
     color: white;
     margin-left: 10px;
     text-transform: uppercase;
     background:  #6A60A9;
-
-
 }
 
 .image-gallery {
     display: flex;
     position: relative;
     height: 90%;
-    margin-top: -20px;
+    margin-top: 20px;
     margin-left: 10px;
     justify-content: center;
     -webkit-filter: drop-shadow(1px 3px 2px rgba(0,0,0,0.4));

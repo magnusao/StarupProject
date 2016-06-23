@@ -37,7 +37,6 @@ function selectedSorting(sorting){
 }
 
 app.get('/imgs', function (req, response) {
-
 	var hashtags = or_default(req.query.hashtags.split(","),[""]);
 	var sorting = or_default(req.query.s, "default");
 	var imageId = or_default(req.query.imgid, "");
@@ -58,6 +57,7 @@ app.use("/", express.static(__dirname + '/..'));
 function setImageState(){
 	instagram.retrieve_all_images(function(imgs) {
 		instagram_images = imgs;
+		instagram_images = instagram.getImageDate(instagram_images);
 		console.log("Finished loading " + imgs.length + " images.");
 		mostPopular = instagram.sortOnLikesAndTime(instagram_images);
 		mostLiked = instagram.sortOnLikes(instagram_images);

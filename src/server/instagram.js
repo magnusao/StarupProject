@@ -112,6 +112,23 @@ exports.getTagCount = function(images){
   return tagCount;
 }
 
+
+
+exports.getImageDate = function(images){
+  const months = ['January','Februaru','March','April','May','June','July','August','September','October','November','December'];
+   for(i = 0; i<images.length; i++){
+    var timestamp = (images[i].created_time);
+    timestamp = new Date(timestamp *1000);
+    var year = timestamp.getFullYear();
+    var month = months[timestamp.getMonth()];
+    var date = timestamp.getDate();
+    images[i].date = date + ' ' + month + ' ' + year;
+   }
+   return images;
+}
+
+
+
 exports.sortOnLikesAndTime = function (images){
   const likeConstant = 1;
   const recentConstant = (1/50000);

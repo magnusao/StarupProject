@@ -82,12 +82,14 @@ class InstagramImage extends Component {
     } else {
       media = <img className="gallery-image-picture" src={image.imageUrl.standard_resolution}></img>;
     }
+    console.log(image);
     return (
           <div className={this.state.animationClass}>
             {media}
             <div className= "gallery-image-info">
             <div className="gallery-image-likes"><span>{image.likes.count}</span></div>
             <div className="gallery-image-text">{image.text}</div>
+            <div className="gallery-image-date"><span>{image.date}</span></div>
             <img alt = "logo" className="gallery-image-logo" src = "/resources/NLlogo.svg"/>
             </div>
           </div>

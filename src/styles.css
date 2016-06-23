@@ -16,7 +16,7 @@ body {
     justify-content: flex-start;
     display: flex;
     position: relative;
-    background-color: #a18cbe;
+    background-color: #6A60A9;
     color: white;
     height: 50px;
     padding-bottom: 5px;
@@ -89,7 +89,7 @@ body {
     height: 80%;
     margin-right: 5px;
     margin-left: 5px;
-    background:  #a18cbe;
+    background:  #6A60A9;
     outline: none;
     border: none;
     color: white;
@@ -105,7 +105,7 @@ body {
     margin-bottom: 4px;
     list-style-type: none;
     z-index: 1000;
-    background: #a18cbe;
+    background: #6A60A9;
     max-height: 300px;
     overflow-y: auto;
     overflow-x: hidden;
@@ -142,7 +142,7 @@ body {
     color: white;
     margin-left: 10px;
     text-transform: uppercase;
-    background:  #a18cbe;
+    background:  #6A60A9;
 
 
 }
@@ -154,6 +154,7 @@ body {
     margin-top: -20px;
     margin-left: 10px;
     justify-content: center;
+    -webkit-filter: drop-shadow(1px 3px 2px rgba(0,0,0,0.4));
 }
 
 
@@ -164,7 +165,8 @@ body {
 
 
 .gallery-image-text{
-    font-size: 2vh;
+    line-height: 4vh;
+    font-size: 2.3vh;
 }
 
 .gallery-image-likes > span {
@@ -184,6 +186,11 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center; 
+}
+
+.gallery-image-logo{
+    width: 100%;
+
 }
 
 

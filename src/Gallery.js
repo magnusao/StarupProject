@@ -88,6 +88,7 @@ class InstagramImage extends Component {
             <div className= "gallery-image-info">
             <div className="gallery-image-likes"><span>{image.likes.count}</span></div>
             <div className="gallery-image-text">{image.text}</div>
+            <img alt = "logo" className="gallery-image-logo" src = "/resources/NLlogo.svg"/>
             </div>
           </div>
     )
@@ -103,7 +104,6 @@ function mapStateToProps(state){
     sorting: state.sorting,
     tags: state.tags,
     selectedTags: state.selectedTags
-
 	}
 }
 

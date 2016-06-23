@@ -21,12 +21,12 @@ export class Gallery extends Component {
 	componentDidMount(){
     this.props.loadTags();
 		this.props.loadImages();
-    setInterval(this.props.newImage, 10000);
+    setInterval(this.props.newImage, 1000000);
 
 	}
   render() {
     const {images, selectedImage, selectImage, sortingChanged, sorting, loadImages, loadTags, currentIndex, tags, selectedTags, addTag, removeTag} = this.props;
-    const leftColumn = images.slice(currentIndex + 1, currentIndex + 5).map((image, index) => (
+    const leftColumn = images.slice(currentIndex + 0, currentIndex + 5).map((image, index) => (
                     <InstagramSmallImage image={image}  key={guid()} index={index}/>
                 ));
     return (
@@ -51,7 +51,7 @@ class InstagramSmallImage extends Component {
     this.state = {animationClass: "gallery-image"};
   };
   componentDidMount () {
-    setTimeout(()=>this.setState({animationClass:"gallery-image enter-active"}),1);
+    setTimeout(()=>this.setState({animationClass:"gallery-image enter-active"}),10);
   }
   render() {
     const {image, index} = this.props;
@@ -70,7 +70,7 @@ class InstagramImage extends Component {
     this.state = {animationClass: "gallery-image"};
   };
   componentDidMount () {
-    setTimeout(()=>this.setState({animationClass:"gallery-image enter-active"}),1);
+    setTimeout(()=>this.setState({animationClass:"gallery-image enter-active"}),10);
   }
   render() {
     const {image} = this.props;

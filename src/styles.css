@@ -1,3 +1,5 @@
+html { overflow-y: hidden; }
+
 body {
     font-family: "Tex gyre adventor";
     background: rgba(106, 96, 169, 0.10);
@@ -184,17 +186,44 @@ body {
 .image-gallery-left{
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-start;
     height: 90vh;
     margin-right: 10px;
 }
 
-.image-gallery-left > .gallery-image{
+.image-gallery-left > .gallery-image {
     height: 19vh;
     width: 19vh;
     padding: 7px;
     background-color: white;
     border-radius: 2px;
+    margin-bottom: 1.65vh;
+    transition: all .8s ease-in-out;
+    transform: translate(0, 0);
+}
+
+.image-gallery-left > .gallery-image:last-child{
+    margin-top: 10vh;
+}
+
+.image-gallery-left > .gallery-image.enter-active:last-child{
+    margin-top: 0;
+}
+
+.image-gallery-left > .gallery-image.enter-active {
+    transform: translate(0, -23vh);
+}
+
+.image-gallery-left > .gallery-image:first-child {
+    z-index: 20;
+    transform: translate(23vh, 0) scale(1.0));
+    opacity: 1;
+}
+
+
+.image-gallery-left > .gallery-image.enter-active:first-child {
+    transform: translate(60vh, 32vh) scale(4.0);
+    opacity: 0;
 }
 
 .image-gallery-right > .gallery-image > .gallery-image-picture {
@@ -204,15 +233,8 @@ body {
     border-radius: 5px;
     background-color: white;
     box-sizing: border-box;
+    z-index: 10;
 }
-
-
-
-.image-gallery-right > .gallery-image{
-    height: 100%;
-    display: flex;
-}
-
 
 .gallery-image-info {
     display: flex;
@@ -224,6 +246,21 @@ body {
     padding: 10px;
     background-color: white;
     align-items: center;
+}
+
+.image-gallery-right > .gallery-image {
+    height: 100%;
+    display: flex;
+}
+
+.image-gallery-right > .gallery-image > .gallery-image-picture {
+    opacity: 0;
+    transition: all .4s ease-in-out 0.4s;
+}
+
+
+.image-gallery-right > .gallery-image.enter-active > .gallery-image-picture {
+    opacity: 1;
 }
 
 @font-face {

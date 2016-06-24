@@ -155,7 +155,7 @@ timeSince(date) {
               return text.text;
 
             })}</div>
-            <div className="gallery-image-date">- {this.timeSince(image.created_time)}</div>
+            <div className="gallery-image-date">{this.timeSince(image.created_time)}</div>
             <img alt = "logo" className="gallery-image-logo" src = "/resources/NLlogo.svg"/>
             </div>
           </div>

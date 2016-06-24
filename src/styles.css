@@ -178,9 +178,9 @@ body {
 }
 
 .gallery-image-date{
-    align-self: flex-end;
-    margin-bottom: auto;
-    margin-right: 20px;
+
+    font-size: 2.3vh;
+
 }
 
 .gallery-image-logo{

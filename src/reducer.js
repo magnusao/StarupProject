@@ -8,7 +8,8 @@ const defaultState = {
  	currentIndex: 0,
  	tags: {},
  	selectedTags: [],
- 	menuOpen: false
+ 	menuOpen: false,
+ 	twitterFeedVisible: true
 }
 export default function images(state = defaultState, action) {
 	console.log(action)
@@ -34,6 +35,8 @@ export default function images(state = defaultState, action) {
 					]}
 		case 'TOGGLE_MENU':
 			return{...state, menuOpen: !state.menuOpen}
+		case 'TOGGLE_TWITTER_FEED':
+			return{...state, twitterFeedVisible: !state.twitterFeedVisible}
 		default:
 			return state;
 	}

@@ -32,11 +32,15 @@ export class Gallery extends Component {
 
 	}
   render() {
-    const {images, selectedImage, selectImage, sortingChanged, sorting, loadImages, loadTags, currentIndex, tags, selectedTags, addTag, removeTag} = this.props;
+    const {images, selectedImage, selectImage, sortingChanged, sorting, loadImages, loadTags, currentIndex, tags, selectedTags, addTag, removeTag, twitterFeedVisible} = this.props;
     const leftColumn = images.length <= 1 ? null: this.getSublist(images, currentIndex, 5).map((image, index) => (
                     <InstagramSmallImage image={image}  key={guid()} index={index}/>
                 ));
+    let twitterFeedVisibleClass = !twitterFeedVisible ? " hidden" : ""
+
+    console.log(twitterFeedVisible)
     return (
+
       <div className="image-gallery">
               <div className="image-gallery-left">
                 {leftColumn}
@@ -46,9 +50,11 @@ export class Gallery extends Component {
                 <InstagramImage image={image} key={guid()} />
               ))}
               </div>
-              <div className="image-gallery-container twitter-container">
+
+              <div className={"image-gallery-container twitter-container"  + twitterFeedVisibleClass}>
               <a className="twitter-timeline"  data-dnt="true" data-chrome="noscrollbar nofooter" data-link-color="#6960a6" data-width="500" data-height="800" href="https://twitter.com/netlight">Tweets by netlight</a>
-              </div>
+              </div>              
+            
       </div>
     )
   }
@@ -174,7 +180,8 @@ function mapStateToProps(state){
     currentIndex: state.currentIndex,
     sorting: state.sorting,
     tags: state.tags,
-    selectedTags: state.selectedTags
+    selectedTags: state.selectedTags,
+    twitterFeedVisible: state.twitterFeedVisible
 	}
 }
 

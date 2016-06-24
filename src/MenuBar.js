@@ -11,7 +11,7 @@ class MenuBar extends Component {
 	super(props, context);
   };
   render(){
-	const {sorting, loadImages, sortingChanged, tags, menuOpen, selectedTags, addTag, removeTag, toggleMenu} = this.props;
+	const {sorting, loadImages, sortingChanged, tags, menuOpen, twitterFeedVisible, selectedTags, addTag, removeTag, toggleMenu, toggleTwitterFeed} = this.props;
 	function radioSelected(selected){
 		sortingChanged(selected);
 		loadImages();
@@ -43,6 +43,8 @@ class MenuBar extends Component {
 				<input type="radio" name="sorting" checked={sorting == DEFAULT} onChange={() => radioSelected(DEFAULT)}/><text>Most popular</text>
 				<input type="radio" name="sorting" checked={sorting == LIKE} onChange={() => radioSelected(LIKE)}/><text>Most liked</text>
 				<input type="radio" name="sorting" checked={sorting == TIME} onChange={() => radioSelected(TIME)}/><text>Newest</text>
+				<input type="checkbox" checked={twitterFeedVisible} onChange={toggleTwitterFeed}/> Show twitter feed
+
 			</form>
 		  </div>
 		</div>
@@ -134,7 +136,8 @@ function mapStateToProps(state){
 	sorting: state.sorting,
 	tags: state.tags,
 	selectedTags: state.selectedTags,
-	menuOpen: state.menuOpen
+	menuOpen: state.menuOpen,
+	twitterFeedVisible: state.twitterFeedVisible
   }
 }
 

@@ -26,7 +26,7 @@ body {
 
 .menubar-content {
     display: flex;
-    font-size: 14px;
+    font-size: 1.6vh;
     margin-left: 0px;
 
 }
@@ -34,6 +34,7 @@ body {
 .menubar-input  {
     margin-left: -1000px;
     display: flex;
+    height: 
     transition: margin-left 0.5s ease-in-out;
 }
 
@@ -44,8 +45,8 @@ body {
 
 .logo {
     display: flex;
-    height: auto;
-    width: auto;
+    height: 2vh;
+    width: 2vh;
     padding: 5px;
     z-index: 10;
     background:  #6A60A9;
@@ -62,6 +63,7 @@ body {
 
 
 .menubar text {
+    font-size: 1.3vh;
     margin-right: 13px;
     margin-left: 3px;
     font-weight: 200;
@@ -74,10 +76,10 @@ body {
 
 
 .TagInput input{
+    margin-top: 0.5vh;
+    height: 2.3vh;
     display: flex;
-    font-size: 20px;
     font-weight: 200;
-    height: 80%;
     margin-right: 5px;
     margin-left: 5px;
     background:  #6A60A9;
@@ -128,12 +130,14 @@ body {
 
 
 .selectedTagDeleteButton {
-    height: 80%;
+    margin-top: 0.5vh;
+    height: 2.9vh;
     border: 0.5px solid white;
     color: white;
     margin-left: 10px;
     text-transform: uppercase;
     background:  #6A60A9;
+    font-size: 1.6vh;
 }
 
 .image-gallery {

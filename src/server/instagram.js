@@ -75,28 +75,6 @@ exports.retrieve_all_images = function(callback){
 	request_more_images({more_available: true, images: []}, (images) => callback(images));
 };
 
-
-exports.sort_images = function(images, sortParam, hashtag) {
-  var sortedImages = [];
-  switch(sortParam){
-    case  'like' :
-    	sortedImages = sortOnLikes(images);
-    	break;
-    case  'time':
-    	sortedImages = sortOnTime(images);
-    	break;
-    default:
-    	sortedImages = sortOnLikesAndTime(images);
-    	break;
-  }
-  if(hashtag != []){
-  	for (i=0; i<hashtag.length;i++){
-  		sortedImages = sortedImages.filter(image => image.tags.some((item) =>item === hashtag[i]));
-  	}
-  }
-  return sortedImages;
-};
-
 exports.sortOnHashtags = function(images, hashtags){
 	var hashtagsSet = new Set(hashtags);
 	if (hashtags.length === 1 && hashtags[0] === "") {

@@ -6,10 +6,10 @@ Running docker container:
 
 2. cd StarupProject
 
-3. (sudo) docker build --no-cache -t "application-name:version" `.`
+3. sudo docker build --no-cache -t "application-name:version" `.`
 
 4. Stop already running container:
-	..*a. (sudo) docker ps
-	..*b. (sudo) docker stop "containerID"
+	a. sudo docker ps
+	b. sudo docker stop "containerID"
 
-5. (sudo) docker run -p "port:port" "application-name:version"
+5. sudo docker run -p "port:port" "application-name:version"

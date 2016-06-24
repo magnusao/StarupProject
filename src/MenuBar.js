@@ -85,7 +85,7 @@ class TagInput extends Component{
 	const ENTER_KEY_CODE = 13;
 	const BACKSPACE_KEY_CODE = 8;
 	const {loadImages, addTag, removeTag, selectedTags} = this.props
-	if (e.keyCode == ENTER_KEY_CODE){
+	if (e.keyCode == ENTER_KEY_CODE && this.props.selectedTags.length < 6){
 	  this.handleAddTag(this.state.suggestions[0].text)
 	} 
 

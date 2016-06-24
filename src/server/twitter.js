@@ -34,7 +34,7 @@ const getAccessToken = function (callback) {
 
 exports.test = function() {
 
-	var params = {screen_name: 'netlight', count: 200};
+	var params = {screen_name: 'netlight', count: 20};
 	client.get('statuses/user_timeline', params, function(error, tweets, response) {
 	  if (!error) {
 	    console.log(tweets[1].entities.media[0]);

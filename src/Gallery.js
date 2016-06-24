@@ -72,32 +72,36 @@ class InstagramSmallImage extends Component {
 }
 
 class InstagramImage extends Component {
-  constructor(props, context) {
-    super(props, context);
-    this.state = {animationClass: "gallery-image"};
-  };
-  componentDidMount () {
-    setTimeout(()=>this.setState({animationClass:"gallery-image enter-active"}),10);
-  }
-  markHashtags(text){
-    const hashtagRegEx = /[#|@]\w+/g
-    let tags = text.match(hashtagRegEx)
-    let textArray = [];
-
-    tags.forEach((tag)=>{
-      let startIndex = text.indexOf(tag)
-      let endIndex = startIndex + tag.length
-      textArray.push({
-        isTag: false,
-        text: text.slice(0, startIndex)
-      })
-      textArray.push({
-        isTag: true,
-        text: text.slice(startIndex, endIndex)
-      })
-      text = text.slice(endIndex, text.length)
-    })
-    return textArray;
+    constructor(props, context) {
+      super(props, context);
+      this.state = {animationClass: "gallery-image"};
+    };
+    componentDidMount () {
+      setTimeout(()=>this.setState({animationClass:"gallery-image enter-active"}),10);
+    }
+    markHashtags(text){
+        const hashtagRegEx = /[#|@]\w+/g
+        let tags = text.match(hashtagRegEx)
+        let textArray = [];
+    
+        if (tags != null){
+            tags.forEach((tag)=>{
+            let startIndex = text.indexOf(tag)
+            let endIndex = startIndex + tag.length
+            textArray.push({
+              isTag: false,
+              text: text.slice(0, startIndex)
+            })
+            textArray.push({
+              isTag: true,
+              text: text.slice(startIndex, endIndex)
+            })
+            text = text.slice(endIndex, text.length)
+        })
+        return textArray;
+        }
+    return [{isTag:false, text:text}];
+    
   }
 
 timeSince(date) {

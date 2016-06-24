@@ -40,9 +40,9 @@ class MenuBar extends Component {
 			<SeletedTags selectedTags={selectedTags} addTag={handleAdd} removeTag={removeTag} loadImages={loadImages}></SeletedTags>
 			<TagInput tags={tags} addTag={addTag} removeTag={removeTag} loadImages={loadImages} selectedTags={selectedTags}/>
 			<form className="sort-buttons">
-				<input type="radio" name="sorting" checked={sorting == DEFAULT} onChange={() => radioSelected(DEFAULT)}/><text>Popularitet</text>
-				<input type="radio" name="sorting" checked={sorting == LIKE} onChange={() => radioSelected(LIKE)}/><text>Likes</text>
-				<input type="radio" name="sorting" checked={sorting == TIME} onChange={() => radioSelected(TIME)}/><text>Tid</text>
+				<input type="radio" name="sorting" checked={sorting == DEFAULT} onChange={() => radioSelected(DEFAULT)}/><text>Most popular</text>
+				<input type="radio" name="sorting" checked={sorting == LIKE} onChange={() => radioSelected(LIKE)}/><text>Most liked</text>
+				<input type="radio" name="sorting" checked={sorting == TIME} onChange={() => radioSelected(TIME)}/><text>Newest</text>
 			</form>
 		  </div>
 		</div>

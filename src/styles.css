@@ -246,6 +246,23 @@ body {
     z-index: 10;
 }
 
+.image-gallery-container {
+    height: 90vh;
+    box-sizing: border-box;
+}
+
+.twitter-container {
+    height: 90vh !important;
+    overflow: hidden;
+
+}
+
+.twitter-timeline {
+    margin-left: 10px;
+    width: 40vh !important;
+    height: 90vh !important;
+}
+
 .gallery-image-info {
     display: flex;
     justify-content: space-around;

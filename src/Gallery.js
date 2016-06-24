@@ -41,10 +41,13 @@ export class Gallery extends Component {
               <div className="image-gallery-left">
                 {leftColumn}
               </div>
-              <div className="image-gallery-right">
+              <div className="image-gallery-right image-gallery-container">
               {this.getSublist(images, currentIndex, 1).map((image, index) => (
                 <InstagramImage image={image} key={guid()} />
               ))}
+              </div>
+              <div className="image-gallery-container twitter-container">
+              <a className="twitter-timeline"  data-dnt="true" data-chrome="noscrollbar nofooter" data-link-color="#6960a6" data-width="500" data-height="800" href="https://twitter.com/netlight">Tweets by netlight</a>
               </div>
       </div>
     )

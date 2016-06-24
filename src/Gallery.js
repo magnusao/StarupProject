@@ -33,7 +33,7 @@ export class Gallery extends Component {
 	}
   render() {
     const {images, selectedImage, selectImage, sortingChanged, sorting, loadImages, loadTags, currentIndex, tags, selectedTags, addTag, removeTag} = this.props;
-    const leftColumn = this.getSublist(images, currentIndex, 5).map((image, index) => (
+    const leftColumn = images.length <= 1 ? null: this.getSublist(images, currentIndex, 5).map((image, index) => (
                     <InstagramSmallImage image={image}  key={guid()} index={index}/>
                 ));
     return (

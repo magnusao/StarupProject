@@ -112,25 +112,25 @@ timeSince(date) {
     var interval = Math.floor(seconds / 31536000);
 
     if (interval > 1) {
-        return interval + " år siden";
+        return interval + " years ago";
     }
     interval = Math.floor(seconds / 2592000);
     if (interval > 1) {
-        return interval + " måneder siden";
+        return interval + " months ago";
     }
     interval = Math.floor(seconds / 86400);
     if (interval > 1) {
-        return interval + " dager siden";
+        return interval + " days ago";
     }
     interval = Math.floor(seconds / 3600);
     if (interval > 1) {
-        return interval + " timer siden";
+        return interval + " hours ago";
     }
     interval = Math.floor(seconds / 60);
     if (interval > 1) {
-        return interval + " minutter siden";
+        return interval + " minutes ago";
     }
-    return Math.floor(seconds) + " sekunder siden";
+    return Math.floor(seconds) + " seconds ago";
 }
 
   render() {

@@ -1,7 +1,8 @@
 var express = require('express');
 var app = express();
 
-var instagram = require('./instagram.js')
+var instagram = require('./instagram.js');
+var twitter = require('./twitter.js');
 
 
 app.use(function(req, res, next) {
@@ -35,6 +36,10 @@ function selectedSorting(sorting){
 			return mostPopular;
 	}
 }
+
+app.get('/test', function (req, response) {
+	twitter.test();
+});
 
 app.get('/imgs', function (req, response) {
 	var hashtags = or_default(req.query.hashtags.split(","),[""]);

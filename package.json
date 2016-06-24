@@ -5,10 +5,9 @@
   "main": "src/main.js",
   "scripts": {
     "test": "babel-node ./src/saga.spec.js | tap-spec",
-	"start-reload": "budo ./src/main.js:server/resources/build.js --dir ./src --verbose  --live -- -t babelify",
-	"start": "node src/server/server.js",
-	"build": "node ./buildfile.js"
-
+    "start-reload": "budo ./src/main.js:server/resources/build.js --dir ./src --verbose  --live -- -t babelify",
+    "start": "node src/server/server.js",
+    "build": "node ./buildfile.js"
   },
   "repository": {
     "type": "git",
@@ -21,12 +20,14 @@
     "babel-polyfill": "6.9.1",
     "express": "^4.14.0",
     "gulp-sourcemaps": "^1.6.0",
+    "node-twitter-api": "^1.7.3",
     "react": "^15.1.0",
     "react-dom": "^15.1.0",
     "react-redux": "^4.4.1",
     "react-tag-input": "^3.0.3",
     "redux": "^3.3.1",
     "redux-saga": "^0.10.5",
+    "twitter": "^1.3.0",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0",
     "watchify": "^3.7.0"

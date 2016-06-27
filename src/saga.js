@@ -1,6 +1,8 @@
-import {fetchImages, fetchTags, DEFAULT, LIKE, TIME} from './fetcher'
+import {fetchImages, fetchTags, DEFAULT, LIKE, TIME} from './fetcher';
 import {put, take, call, fork} from 'redux-saga/effects';
-import {store} from './main'
+import {delay} from 'redux-saga';
+import {store} from './main';
+import {newImage} from './actions'
 
 
 export function* loadImages() {
@@ -39,5 +41,16 @@ export function* watchForLoadTags() {
   while(true) {
     yield take('LOAD_TAGS');
     yield call(loadTags);
+  }
+}
+
+export function* beginUpdatingImages(getState) {
+  // Wait until the images have been loaded
+  while(yield take('IMAGES_LOADED')) {
+    while(true) {
+      console.log("looping");
+      yield delay(10000);
+      yield put(newImage());    
+    }
   }
 }

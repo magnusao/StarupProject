@@ -10,7 +10,7 @@ import createSagaMiddleware from 'redux-saga';
 import {Provider} from 'react-redux';
 import reducer from './reducer';
 
-import {watchForLoadImages, watchForLoadTags, loadImages} from './saga';
+import {watchForLoadImages, watchForLoadTags, loadImages, beginUpdatingImages} from './saga';
 
 const sagaMiddleware = createSagaMiddleware()
 export const store = createStore(
@@ -19,6 +19,7 @@ export const store = createStore(
 
 sagaMiddleware.run(() => watchForLoadImages(store.getState));
 sagaMiddleware.run(() => watchForLoadTags(store.getState));
+sagaMiddleware.run(() => beginUpdatingImages(store.getState));
 
 
 

@@ -2,22 +2,21 @@
 
 ## Running docker container:
 
-1. git clone https://github.com/magnusao/StarupProject.git
+1. `git clone https://github.com/magnusao/StarupProject.git`
 
-2. cd StarupProject
+2. `cd StarupProject`
 
-3. sudo docker build --no-cache -t "application-name:version" `.`
+3. `sudo docker build --no-cache -t "application-name:version" .`
 
 4. Stop already running container:
- 	a. sudo docker ps
-	b. sudo docker stop "containerID"
+ 	a. `sudo docker ps`
+	b. `sudo docker stop "containerID"`
 
-5. sudo docker run -p "port:port" "application-name:version"
+5. `sudo docker run -p "port:port" "application-name:version"`
 
 ## Local development
 
-To set up your local development environment
-1. Clone this repo
+For rapid development there is a live reload task that rebuilds build.js whenever changes to front end files are detected. This means you will see changes live on the page as you make changes. To start this server navigate to the root project folder and run `npm run start-reload`.
 
 ## Resources
 

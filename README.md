@@ -16,7 +16,11 @@
 
 ## Local development
 
-For rapid development there is a live reload task that rebuilds build.js whenever changes to front end files are detected. This means you will see changes live on the page as you make changes. To start this server navigate to the root project folder and run `npm run start-reload`.
+For rapid development there is a live reload task that rebuilds build.js whenever changes to front end files are detected. This means you will see changes live on the page whenever you save these files. To start the live reload server navigate to the root project folder and run `npm run start-reload`.
+
+Then to run the webserver run `npm start`.
+
+The page can be accessed at `localhost:80`.
 
 ## Resources
 

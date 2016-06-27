@@ -7,6 +7,7 @@ export const LOAD_TAGS = 'LOAD_TAGS';
 export const REMOVE_TAG = 'REMOVE_TAG';
 export const ADD_TAG = 'ADD_TAG'
 export const TOGGLE_MENU = 'TOGGLE_MENU';
+export const TOGGLE_TWITTER_FEED = 'TOGGLE_TWITTER_FEED';
 
 export function newImage() {
   return {
@@ -63,5 +64,11 @@ export function addTag(tag){
 export function toggleMenu(){
 	return{
 		type: TOGGLE_MENU
+	}
+}
+
+export function toggleTwitterFeed(){
+	return{
+		type: TOGGLE_TWITTER_FEED
 	}
 }

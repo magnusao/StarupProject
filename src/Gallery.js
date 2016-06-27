@@ -61,6 +61,9 @@ class InstagramSmallImage extends Component {
     this.state = {animationClass: "gallery-image"};
   };
   componentDidMount () {
+    // This delay is set to force react to first render the component and afterwards
+    // change the class, triggering the ccs animation. 
+    // Not a good solution.
     setTimeout(()=>this.setState({animationClass:"gallery-image enter-active"}),10);
   }
   render() {
@@ -80,6 +83,9 @@ class InstagramImage extends Component {
       this.state = {animationClass: "gallery-image"};
     };
     componentDidMount () {
+    // This delay is set to force react to first render the component and afterwards
+    // change the class, triggering the ccs animation.
+    // Not a good solution.
       setTimeout(()=>this.setState({animationClass:"gallery-image enter-active"}),10);
     }
     markHashtags(text){

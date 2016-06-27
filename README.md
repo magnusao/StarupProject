@@ -14,6 +14,10 @@
 
 5. sudo docker run -p "port:port" "application-name:version"
 
+## Local development
+
+To set up your local development environment
+1. Clone this repo
 
 ## Resources
 

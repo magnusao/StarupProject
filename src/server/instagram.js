@@ -2,7 +2,8 @@ var https = require('https');
 var http = require('http');
 
 var API_ENDPOINT = 'https://www.instagram.com/netlightconsulting/media/';
-
+var retry_count = 0
+var data_cache = [];
 
 var get_tags = function(caption) {
 	if (caption) {
@@ -17,7 +18,7 @@ var get_tags = function(caption) {
 }
 
 var get_image_urls = function(images) {
-	return {standard_resolution: images.standard_resolution.url, low_resolution: images.low_resolution.url, 
+	return {standard_resolution: images.standard_resolution.url, low_resolution: images.low_resolution.url,
 		thumbnail: images.thumbnail.url}
 }
 
@@ -33,7 +34,7 @@ var get_text = function(caption) {
 var map_new_item = function(item) {
 	return {imageUrl: get_image_urls(item.images), videoUrl: get_video_urls(item.videos), id: item.id,
 		comments: item.comments, likes: item.likes, created_time: item.created_time, tags: get_tags(item.caption),
-		text: get_text(item.caption), type:item.type}	
+		text: get_text(item.caption), type:item.type}
 }
 
 var handle_new_images = (response, images) => {
@@ -46,11 +47,12 @@ var handle_new_images = (response, images) => {
 		max_id = response.items[response.items.length-1].id;
 	}
 
-	var more_available = response.more_available;		
+	var more_available = response.more_available;
 	return {more_available, images, max_id};
 }
 
 var request_more_images = (handle_result, callback) => {
+	callback(handle_result.images);
 	if (!handle_result.more_available) return callback(handle_result.images);
 
 	var url = API_ENDPOINT + (handle_result.max_id?'?max_id='+handle_result.max_id:'');
@@ -62,14 +64,34 @@ var request_more_images = (handle_result, callback) => {
 		  });
 
 		  res.on('end', () => {
-		  	request_more_images(handle_new_images(JSON.parse(data), handle_result.images), callback);
+				try{
+					json_data = JSON.parse(data)
+					data_cache.push(json_data);
+					return request_more_images(handle_new_images(json_data, handle_result.images), callback);
+				}catch(e){
+					error_handler(e, handle_result, callback);
+				}
+
 		  });
 
 		}).on('error', (e) => {
-		  console.error(e);
-		});	
+			error_handler(e, handle_result, callback);
+
+		});
 
 };
+
+var error_handler = function(e, handle_result, callback){
+	if(retry_count < 42){
+		retry_count++;
+		//Dust yourself of and try again...
+		request_more_images(handle_new_images(data_cache[data_cache.length-1], handle_result.images), callback);
+		console.log(' 💔 RETRYING FETCH CAUSE:', e);
+	}else{
+		return console.error('🚮 Is your internet broken? I give up 🚮', e);
+	}
+
+}
 
 exports.retrieve_all_images = function(callback){
 	request_more_images({more_available: true, images: []}, (images) => callback(images));
@@ -127,5 +149,5 @@ exports.sortOnLikes = function (images){
 exports.sortOnTime = function (images){
 	var newImages = images.slice().sort(function(a, b) {
 		return parseFloat(b.created_time) - parseFloat(a.created_time);});
-	return newImages;   
+	return newImages;
 }

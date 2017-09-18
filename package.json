@@ -1,20 +1,22 @@
 {
-  "name": "egghead-react-redux-image-gallery",
-  "version": "0.0.1",
-  "description": "Redux Saga beginner tutorial",
-  "main": "src/main.js",
+  "name": "NetlightApp",
+  "version": "1.0.0",
+  "description": "A Instagram Netlight application",
+  "main": "main.js",
   "scripts": {
-    "test": "babel-node ./src/saga.spec.js | tap-spec",
-    "start-reload": "budo ./src/main.js:server/resources/build.js --dir ./src --verbose  --live -- -t babelify",
-    "start": "node src/server/server.js",
+    "start": "electron .",
     "build": "node ./buildfile.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/joelhooks/egghead-react-redux-image-gallery.git"
-  },
-  "author": "",
-  "license": "MIT",
+  "repository": "https://github.com/electron/electron-quick-start",
+  "keywords": [
+    "Electron",
+    "quick",
+    "start",
+    "tutorial",
+    "demo"
+  ],
+  "author": "GitHub",
+  "license": "CC0-1.0",
   "dependencies": {
     "babel-eslint": "^6.0.4",
     "babel-polyfill": "6.9.1",
@@ -33,6 +35,7 @@
     "watchify": "^3.7.0"
   },
   "devDependencies": {
+    "electron": "~1.6.2",
     "babel-cli": "^6.1.18",
     "babel-core": "6.9.1",
     "babel-preset-es2015": "^6.1.18",
@@ -43,10 +46,5 @@
     "budo": "^8.0.4",
     "tap-spec": "^4.1.1",
     "tape": "^4.2.2"
-  },
-  "bugs": {
-    "url": "https://github.com/joelhooks/egghead-react-redux-image-gallery/issues"
-  },
-  "homepage": "https://github.com/joelhooks/egghead-react-redux-image-gallery#readme",
-  "keywords": []
+  }
 }

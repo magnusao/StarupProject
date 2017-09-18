@@ -63,7 +63,7 @@ function setImageState(){
 	instagram.retrieve_all_images(function(imgs) {
 		instagram_images = imgs;
 		instagram_images = instagram.getImageDate(instagram_images);
-		console.log("Finished loading " + imgs.length + " images.");
+		console.log(" ♻️ Finished loading " + imgs.length + " images. ♻️ \n");
 		mostPopular = instagram.sortOnLikesAndTime(instagram_images);
 		mostLiked = instagram.sortOnLikes(instagram_images);
 		mostRecent = instagram.sortOnTime(instagram_images);
@@ -73,10 +73,9 @@ function setImageState(){
 var init_server = function() {
 	setImageState();
 	setInterval(setImageState, 3600000)
-;	app.listen(80, function () {
+;	app.listen(1337, function () {
 		console.log('Example app listening on port 80!');
 	});
 }
 
-init_server();
-
+module.exports = init_server;

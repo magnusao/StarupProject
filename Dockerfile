@@ -8,14 +8,14 @@ MAINTAINER Alfredo Clemente
 RUN git clone https://github.com/magnusao/StarupProject.git && \
     cd StarupProject && \
 	npm --loglevel=silent install
-	
-	
+
+
 WORKDIR /StarupProject
-	
+
 RUN npm run build
 
 # Expose port
-EXPOSE  80
+EXPOSE  1337
 
 
 CMD ["npm", "start"]
